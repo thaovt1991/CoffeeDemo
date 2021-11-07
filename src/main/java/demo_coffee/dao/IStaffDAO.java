@@ -9,9 +9,9 @@ public interface IStaffDAO {
 
     List<Staff> findAll() ;
 
-    void save(Staff staff) ;
+    boolean save(Staff staff) ;
 
-    Staff findById()  ;
+    Staff findById(int id)  ;
 
     boolean update(Staff staff) ;
 

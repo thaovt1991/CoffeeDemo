@@ -1,50 +1,51 @@
 package demo_coffee.model;
 
+
 public class Staff {
     private int id;
     private String full_name;
     private String gender;
-    private String date_of_birth;
-    private String id_car;
+    private String date_of_birth; //dang ngay "2021-2-21"
+    private String id_card;
     private String email;
     private String phone;
     private String address;
     private String image;
-    private String pay;
     private String position;
+    private long pay;
     private boolean status ;
     private String description;
 
 
     public Staff(){}
 
-    public Staff(String full_name, String gender, String date_of_birth, String id_car, String email, String phone, String address, String image, String pay, String position, boolean status, String description) {
+    public Staff(String full_name, String gender, String date_of_birth, String id_card, String email, String phone, String address, String image, String position, long pay, boolean status, String description) {
         this.full_name = full_name;
         this.gender = gender;
         this.date_of_birth = date_of_birth;
-        this.id_car = id_car;
+        this.id_card = id_card;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.image = image;
-        this.pay = pay;
         this.position = position;
+        this.pay = pay;
         this.status = status;
         this.description = description;
     }
 
-    public Staff(int id, String full_name, String gender, String date_of_birth, String id_car, String email, String phone, String address, String image, String pay, String position, boolean status, String description) {
+    public Staff(int id, String full_name, String gender, String date_of_birth, String id_card, String email, String phone, String address, String image, String position, long pay, boolean status, String description) {
         this.id = id;
         this.full_name = full_name;
         this.gender = gender;
         this.date_of_birth = date_of_birth;
-        this.id_car = id_car;
+        this.id_card = id_card;
         this.email = email;
         this.phone = phone;
         this.address = address;
         this.image = image;
-        this.pay = pay;
         this.position = position;
+        this.pay = pay;
         this.status = status;
         this.description = description;
     }
@@ -57,11 +58,11 @@ public class Staff {
         this.id = id;
     }
 
-    public String getFull_name() {
+    public String getFullName() {
         return full_name;
     }
 
-    public void setFull_name(String full_name) {
+    public void setFullName(String full_name) {
         this.full_name = full_name;
     }
 
@@ -73,20 +74,20 @@ public class Staff {
         this.gender = gender;
     }
 
-    public String getDate_of_birth() {
+    public String getDateOfBirth() {
         return date_of_birth;
     }
 
-    public void setDate_of_birth(String date_of_birth) {
+    public void setDateOfBirth(String date_of_birth) {
         this.date_of_birth = date_of_birth;
     }
 
-    public String getId_car() {
-        return id_car;
+    public String getIdCard() {
+        return id_card;
     }
 
-    public void setId_car(String id_car) {
-        this.id_car = id_car;
+    public void setIdCard(String id_card) {
+        this.id_card = id_card;
     }
 
     public String getEmail() {
@@ -121,11 +122,11 @@ public class Staff {
         this.image = image;
     }
 
-    public String getPay() {
+    public long getPay() {
         return pay;
     }
 
-    public void setPay(String pay) {
+    public void setPay(long pay) {
         this.pay = pay;
     }
 
