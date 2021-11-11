@@ -5,7 +5,7 @@
 
 <head>
 
-    <title>List Staffr</title>
+    <title>List Staff</title>
     <style>
         .id {
             width: 5%;
@@ -74,23 +74,34 @@
                 <!-- end row -->
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="card-box" >
-                            <%--                            <div style="float: left"> <h5 class="mt-0 font-14 mb-3">Contacts</h5></div>--%>
-                            <%--                            <div style="float: right">--%>
-                            <li class="d-none d-sm-block">
-                                <form class="app-search" method="post" action="/staffs?action=search">
-                                    <div class="app-search-box">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="name" id="name" value="${requestScope["nameSearch"]}">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-primary " type="submit" >
-                                                    <i class="fas fa-search"></i>
-                                                </button>
+                        <div class="card-box row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-8">
+                                <li class="d-none d-sm-block">
+                                    <form class="app-search" method="post"
+                                          action="${pageContext.request.contextPath}/staffs?action=search">
+                                        <div class="app-search-box">
+                                            <div class="input-group">
+                                                <div class="form-control">
+                                                    <label for="properties" style="font-size: 16px">Properties</label>
+                                                    <select name="properties" id="properties" style="width: 120px">
+                                                        <option value="Name"  <c:if test='${requestScope["propertiesSelect"]=="Name"}'>selected="true"</c:if> >Name</option>
+                                                        <option value="Gender"  <c:if test='${requestScope["propertiesSelect"]=="Gender"}'>selected="true"</c:if>>Gender</option>
+                                                        <option value="Position"  <c:if test='${requestScope["propertiesSelect"]=="Position"}'>selected="true"</c:if>>Position</option>
+                                                    </select>
+                                                </div>
+                                                <input type="text" class="form-control" name="search" id="search"
+                                                       value="${requestScope["search"]}">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-primary " type="submit">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </li>
+                                    </form>
+                                </li>
+                            </div>
                         </div>
 
                         </div>
@@ -122,7 +133,7 @@
                                         <td>
                                             <button type="button" class="btn btn-outline-secondary"
                                                     data-toggle="tooltip" data-placement="top" title="Edit"
-                                                    onclick="window.location.href ='/staffs?action=edit&id=${staff.getId()}'">
+                                                    onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=edit&id=${staff.getId()}'">
                                                 <i class="far fa-edit"></i>
                                             </button>
                                         </td>
@@ -130,7 +141,7 @@
                                             <button type="button" class="btn btn-outline-info"
                                                     data-toggle="tooltip"
                                                     data-placement="top" title="Details"
-                                                    onclick="window.location.href ='/staffs?action=details&id=${staff.getId()}'">
+                                                    onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=details&id=${staff.getId()}'">
                                                 <i class="fas fa-search-plus"></i>
                                             </button>
                                         </td>
@@ -138,7 +149,7 @@
                                             <button type="button" class="btn btn-outline-success"
                                                     data-toggle="tooltip"
                                                     data-placement="top" title="Create Account"
-                                                    onclick="window.location.href ='/staffs?action=details&id=${staff.getId()}'">
+                                                    onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=details&id=${staff.getId()}'">
                                                 <i class="fas fa-user-plus"></i>
                                             </button>
                                         </td>
@@ -146,7 +157,7 @@
                                             <button type="button" class="btn btn-outline-danger"
                                                     data-toggle="tooltip"
                                                     data-placement="top" title="Delete"
-                                                    onclick="window.location.href ='/staffs?action=delete&id=${staff.getId()}'">
+                                                    onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=delete&id=${staff.getId()}'">
                                                 <i class="fas fa-ban"></i>
                                             </button>
                                         </td>

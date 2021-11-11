@@ -7,7 +7,9 @@
 
     <title>Create New Staff</title>
     <style>
-
+        label {
+            color: #006cfa;
+        }
     </style>
     <%@include file="/layout/head.jsp" %>
 </head>
@@ -47,87 +49,145 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box">
-                        <h5 class="mt-0 font-14 mb-3">Create New Staff</h5>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h5 class="mt-0 font-14 mb-3">Create New Staff</h5>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>
+                                    <c:if test='${requestScope["sucsess"] != null}'>
+                                                <span style="color: green"
+                                                      class="message">${requestScope["sucsess"]}</span>
+                                    </c:if>
+                                    <c:if test='${requestScope["error"] != null}'>
+                                        <span style="color: red" class="message">${requestScope["error"]}</span>
+                                    </c:if>
+                                </p>
+                            </div>
+                            <div class="col-sm-3"></div>
+                        </div>
+
                         <div class="table">
                             <form method="post">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Full Name</lable>
+                                        <label for="full_name">Full Name</label>
                                     </div>
                                     <div class="col-sm-6">
-                                    <input name="full_name" id="full_name" type="text" placeholder="Full name">
+                                        <input class="form-control" name="full_name" id="full_name" type="text"
+                                               placeholder="Full name">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["messageFullName"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["messageFullName"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label>Gender</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="radio" name="gender" value="Nam" checked="check">
+                                        <label>Nam</label>
+                                        <input type="radio" name="gender" value="Nu">
+                                        <label>Nu</label>
                                     </div>
                                     <div class="col-sm-4"></div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Gender</lable>
+                                        <label>Date Of Birth</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="radio" name="gender" value="Nam" checked = "check">
-                                        <lable>Nam</lable>
-                                        <input type="radio" name="gender" value="Nu" >
-                                        <lable>Nu</lable>
+                                        <input class="form-control" type="date" name="date_of_birth" id="date_of_birth">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["messageDateOfBirth"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["messageDateOfBirth"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Date Of Birth</lable>
+                                        <label>ID Card</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input  type="date" name="date_of_birth" id="date_of_birth">
+                                        <input class="form-control" type="text" name="id_card" id="id_card"
+                                               placeholder="Id card">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["messageIdCard"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["messageIdCard"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>ID Card</lable>
+                                        <label>Email</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name ="id_card" id ="id_card" placeholder="Id card">
-                                    </div>
-                                    <div class="col-sm-4"></div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <lable>Email</lable>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" name ="email" id="email" placeholder="Email">
+                                        <input class="form-control" type="text" name="email" id="email"
+                                               placeholder="Email">
                                     </div>
 
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["messageEmail"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["messageEmail"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Phone</lable>
+                                        <label>Phone</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="phone" id ="phone" placeholder="Phone">
+                                        <input class="form-control" type="text" name="phone" id="phone"
+                                               placeholder="Phone">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["messagePhone"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["messagePhone"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Address</lable>
+                                        <label>Address</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <textarea name="address" id="address" cols="40" rows="5" style="resize: none" placeholder="Address"></textarea>
-                                       </textarea>
+                                        <textarea class="form-control" name="address" id="address" cols="40" rows="5"
+                                                  style="resize: none"
+                                                  placeholder="Address"></textarea>
+                                        </textarea>
                                     </div>
                                     <div class="col-sm-4"></div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Image</lable>
+                                        <label>Image</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type='file' accept='image/*' onchange='openFile(event)' name="fileUpdate"
@@ -141,7 +201,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Position</lable>
+                                        <label>Position</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <select name="position" id="position">
@@ -157,17 +217,17 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Pay</lable>
+                                        <label>Pay</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="number" name ="pay" id="pay">
+                                        <input class="form-control" type="number" name="pay" id="pay" value="0">
                                     </div>
                                     <div class="col-sm-4"></div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Status</lable>
+                                        <label>Status</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <select name="status" id="status">
@@ -180,10 +240,11 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Description</lable>
+                                        <label>Description</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <textarea name="description" id="description" cols="40" rows="10" style="resize: none" placeholder="Description">
+                                        <textarea class="form-control" name="description" id="description" rows="5"
+                                                  style="resize: none ; width: 100%" placeholder="Description">
                                         </textarea>
                                     </div>
                                     <div class="col-sm-4"></div>
@@ -191,39 +252,22 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable></lable>
+                                        <label></label>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <button type="submit" class="btn btn-outline-success">Create</button>
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-outline-success">
+                                            <i class="fad fa-user-plus"></i>
+                                            <span>Create</span></button>
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-3">
+                                        <button type="button" class="btn btn-outline-dark"
+                                                onclick='window.location.href="${pageContext.request.contextPath}/staffs?action=list"'>
+                                            <i class="fas fa-arrow-left"></i> <span>Back</span></button>
+                                    </div>
+                                    <div class="col-sm-4">
+                                    </div>
                                 </div>
                             </form>
-                            <br>
-<%--                            <div class="row">--%>
-<%--                                <div id="footer" class="col-md-12">--%>
-<%--                                    <p style="color: green">--%>
-<%--                                        <c:if test='${requestScope["sucsess"] != null}'>--%>
-<%--                                            <span class="message">${requestScope["sucsess"]}</span>--%>
-<%--                                        </c:if>--%>
-<%--                                    </p>--%>
-<%--                                    <p style="color: red">--%>
-<%--                                        <c:if test='${requestScope["messageFullName"] != null}'>--%>
-<%--                                            <span class="message">${requestScope["messageFullName"]}</span>--%>
-<%--                                        </c:if>--%>
-<%--                                    </p>--%>
-<%--                                    <p style="color: red">--%>
-<%--                                        <c:if test='${requestScope["messageEmail"] != null}'>--%>
-<%--                                            <span class="message">${requestScope["messageEmail"]}</span>--%>
-<%--                                        </c:if>--%>
-<%--                                    </p>--%>
-<%--                                    <p style="color: red">--%>
-<%--                                        <c:if test='${requestScope["error"] != null}'>--%>
-<%--                                            <span class="message">${requestScope["error"]}</span>--%>
-<%--                                        </c:if>--%>
-<%--                                    </p>--%>
-<%--                                </div>--%>
-<%--                            </div>--%>
                         </div>
                     </div>
                 </div>

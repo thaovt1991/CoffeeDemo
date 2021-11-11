@@ -1,0 +1,200 @@
+package demo_coffee.service;
+
+import demo_coffee.model.Account;
+import demo_coffee.model.Staff;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class AccountService implements IAccountService {
+
+    private String jdbcURL = "jdbc:mysql://localhost:3306/demo_coffee?useSSL=false";
+    private String jdbcUsername = "root";
+    private String jdbcPassword = "123456";
+
+
+    protected Connection getConnection() {
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return connection;
+    }
+
+    @Override
+    public List<Account> findAllActive() {
+        String SELECT_ALL_ACCOUNT = "SELECT * FROM accounts WHERE status = 1";
+        List<Account> accounts = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ACCOUNT);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String permission = rs.getString("permission");
+                boolean status = rs.getBoolean("status");
+                accounts.add(new Account(id, username, password, permission, status));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return accounts;
+    }
+
+    @Override
+    public List<Account> findAllInactive() {
+        String SELECT_ALL_ACCOUNT = "SELECT * FROM accounts WHERE status = 0";
+        List<Account> accounts = new ArrayList<>();
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_ACCOUNT);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String permission = rs.getString("permission");
+                boolean status = rs.getBoolean("status");
+                accounts.add(new Account(id, username, password, permission, status));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return accounts;
+    }
+
+
+    @Override
+    public boolean save(Account account) throws SQLException {
+        String INSERT_ACCOUNT_SQL = "INSERT INTO accounts VALUES (?,?,?,?,?)";
+        boolean isInsert = false;
+        System.out.println(INSERT_ACCOUNT_SQL);
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ACCOUNT_SQL);
+            preparedStatement.setInt(1, account.getIdUser());
+            preparedStatement.setString(2, account.getUsername());
+            preparedStatement.setString(3, account.getPassword());
+            preparedStatement.setString(4, account.getPermission());
+            preparedStatement.setBoolean(5, account.isStatus());
+
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+            isInsert = true;
+            connection.commit();
+        } catch (SQLException e) {
+            printSQLException(e);
+            connection.rollback();
+            isInsert = false;
+        } finally {
+            connection.setAutoCommit(true);
+            connection.close();
+        }
+        return isInsert;
+    }
+    @Override
+    public Account findById(int id) {
+       String SELECT_ACCOUNT_BY_ID = " SELECT * ACCOUNT WHERE id= ?" ;
+       Account account = null ;
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ACCOUNT_BY_ID);
+            preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String permission = rs.getString("permission");
+                boolean status = rs.getBoolean("status");
+                account= new Account(id, username, password, permission, status);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return account ;
+    }
+
+    @Override
+    public boolean update(Account account) throws SQLException {
+        String UPDATE_ACCOUNT_SQL = "UPDATE staffs SET password = ?, permission = ? , status = ? " ;
+        boolean rowUpdated = false;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ACCOUNT_SQL) ;
+            preparedStatement.setString(1, account.getPassword());
+            preparedStatement.setString(2, account.getPermission());
+            preparedStatement.setBoolean(3, account.isStatus());
+
+
+            rowUpdated = preparedStatement.executeUpdate() > 0;
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            connection.rollback();
+        } finally {
+            connection.setAutoCommit(true);
+            connection.close();
+        }
+        return rowUpdated;
+    }
+
+    @Override
+    public void restore(int id) throws SQLException {
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    public List<Account> search(String username) {
+        return null;
+    }
+
+    @Override
+    public List<Account> searchInactive(String username) {
+        return null;
+    }
+
+    @Override
+    public void removeData(int id) {
+
+    }
+
+    private void printSQLException(SQLException ex) {
+        for (Throwable e : ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
+    }
+}

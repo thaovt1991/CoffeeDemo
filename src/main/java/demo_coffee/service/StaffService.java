@@ -30,6 +30,37 @@ public class StaffService implements IStaffService {
 
     @Override
     public List<Staff> findAll() {
+        String SELECT_ALL_STAFFS = "SELECT * FROM staffs";
+        List<Staff> staffs = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_STAFFS);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String full_name = rs.getString("full_name");
+                String gender = rs.getString("gender");
+                String date_of_birth = rs.getString("date_of_birth");
+                String id_card = rs.getString("id_card");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String address = rs.getString("address");
+                String image = rs.getString("image");
+                String position = rs.getString("position_staff");
+                long pay = rs.getLong("pay");
+                boolean status_staff = rs.getBoolean("status_staff");
+                String description_staff = rs.getString("description_staff");
+                staffs.add(new Staff(id, full_name, gender, date_of_birth, id_card, email, phone, address, image, position, pay, status_staff, description_staff));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return staffs;
+    }
+
+    @Override
+    public List<Staff> findAllActive() {
         String SELECT_ALL_STAFFS = "SELECT * FROM staffs WHERE status_staff = 1";
         List<Staff> staffs = new ArrayList<>();
         try {
@@ -58,7 +89,8 @@ public class StaffService implements IStaffService {
         }
         return staffs;
     }
-   @Override
+
+    @Override
     public List<Staff> findAllInactive() {
         String SELECT_ALL_STAFFS = "SELECT * FROM staffs WHERE status_staff = 0";
         List<Staff> staffs = new ArrayList<>();
@@ -95,7 +127,7 @@ public class StaffService implements IStaffService {
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
         boolean isInsert = false;
         System.out.println(INSERT_STAFF_SQL);
-        Connection connection = getConnection();
+        Connection connection = null;
         try {
             connection = getConnection();
             connection.setAutoCommit(false);
@@ -122,7 +154,8 @@ public class StaffService implements IStaffService {
             connection.rollback();
             isInsert = false;
         } finally {
-
+            connection.setAutoCommit(true);
+            connection.close();
         }
         return isInsert;
     }
@@ -210,53 +243,118 @@ public class StaffService implements IStaffService {
     }
 
     @Override
-    public List<Staff> search(String nameSearch) {
-//        String SEARCH_STAFF_SQL = "SELECT * FROM staffs WHERE full_name LIKE ?;";
-////        , gender LIKE '%?%' , position_staff LIKE '%?%'
-//
-//        List<Staff> staffsSearch = new ArrayList<>() ;
-////        staffs = null ;
-//        try {
-//            Connection connection = getConnection();
-//            PreparedStatement statement = connection.prepareStatement(SEARCH_STAFF_SQL);
-////            nameSearch = "%"+nameSearch+"%";
-//            statement.setString(1,nameSearch);
-////            statement.setString(2,genderSearch);
-////            statement.setString(3,positionSearch);
-//
-//            System.out.println(statement);
-//            ResultSet rs = statement.executeQuery();
-//            while (rs.next()) {
-//                int id = rs.getInt("id");
-//                String full_name = rs.getString("full_name");
-//                String gender = rs.getString("gender");
-//                String date_of_birth = rs.getString("date_of_birth");
-//                String id_card = rs.getString("id_card");
-//                String email = rs.getString("email");
-//                String phone = rs.getString("phone");
-//                String address = rs.getString("address");
-//                String image = rs.getString("image");
-//                String position = rs.getString("position_staff");
-//                long pay = rs.getLong("pay");
-//                boolean status_staff = rs.getBoolean("status_staff");
-//                String description_staff = rs.getString("description_staff");
-//                staffsSearch.add(new Staff(id, full_name, gender, date_of_birth, id_card, email, phone, address, image, position, pay, status_staff, description_staff));
-//            }
-//        } catch (SQLException e) {
-//            printSQLException(e);
-//        }
-        List<Staff> staffs = findAll() ;
-        List<Staff> staffsSearch = new ArrayList<>() ;
-        for(Staff staff : staffs){
-            if(staff.getFullName().contains(nameSearch)){
-                staffsSearch.add(staff);
-            }
+    public List<Staff> search(String properties, String search) {
+        List<Staff> staffs = findAllActive();
+        List<Staff> staffsSearch = new ArrayList<>();
+        switch (properties) {
+            case "Gender":
+                for (Staff staff : staffs) {
+                    if (staff.getGender().contains(search)) {
+                        staffsSearch.add(staff);
+                    }
+                }
+                break;
+            case "Position":
+                for (Staff staff : staffs) {
+                    if (staff.getPosition().contains(search)) {
+                        staffsSearch.add(staff);
+                    }
+                }
+                break;
+            default:
+                for (Staff staff : staffs) {
+                    if (staff.getFullName().contains(search)) {
+                        staffsSearch.add(staff);
+                    }
+                }
+
+                break;
+        }
+
+        return staffsSearch;
+    }
+
+    @Override
+    public List<Staff> searchStaffInactive(String properties, String search) {
+        List<Staff> staffs = findAllInactive();
+        List<Staff> staffsSearch = new ArrayList<>();
+        switch (properties) {
+            case "Gender":
+                for (Staff staff : staffs) {
+                    if (staff.getGender().contains(search)) {
+                        staffsSearch.add(staff);
+                    }
+                }
+                break;
+            case "Position":
+                for (Staff staff : staffs) {
+                    if (staff.getPosition().contains(search)) {
+                        staffsSearch.add(staff);
+                    }
+                }
+                break;
+            default:
+                for (Staff staff : staffs) {
+                    if (staff.getFullName().contains(search)) {
+                        staffsSearch.add(staff);
+                    }
+                }
+                break;
         }
         return staffsSearch;
     }
 
     @Override
-     public void restore(int id){
+    public void removeData(int id) {
+        String DELETE_STAFF_SQL = "DELETE FROM staffs WHERE id = ?";
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_STAFF_SQL);
+            preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<Staff> listStaffNotHaveAccount() {
+       String SELECT_STAFF_NOT_HAVE_ACCOUNT = "SELECT * FROM staffs WHERE id NOT IN (SELECT id FROM accounts) AND status_staff = 1" ;
+        List<Staff> staffs = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_STAFF_NOT_HAVE_ACCOUNT);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String full_name = rs.getString("full_name");
+                String gender = rs.getString("gender");
+                String date_of_birth = rs.getString("date_of_birth");
+                String id_card = rs.getString("id_card");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String address = rs.getString("address");
+                String image = rs.getString("image");
+                String position = rs.getString("position_staff");
+                long pay = rs.getLong("pay");
+                boolean status_staff = rs.getBoolean("status_staff");
+                String description_staff = rs.getString("description_staff");
+                staffs.add(new Staff(id, full_name, gender, date_of_birth, id_card, email, phone, address, image, position, pay, status_staff, description_staff));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return staffs;
+    }
+
+
+    @Override
+    public void restore(int id) {
         String UPDATE_STATUS_STAFF_SQL_RESTORE = "UPDATE staffs SET status_staff = ? WHERE id = ?";
         Connection connection = null;
         try {
@@ -269,6 +367,7 @@ public class StaffService implements IStaffService {
             e.printStackTrace();
         }
     }
+
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {

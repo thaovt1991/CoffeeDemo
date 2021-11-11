@@ -6,9 +6,6 @@
 <head>
 
     <title>Details Staff</title>
-    <style>
-
-    </style>
     <%@include file="/layout/head.jsp" %>
 </head>
 
@@ -49,12 +46,13 @@
                     <div class="card-box">
                         <h5 class="mt-0 font-14 mb-3">Details Information Staff </h5>
                         <div class="table">
-                            <form method="post">
+                            <form id="form-delete">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Full Name</lable>
+                                        <label>Full Name</label>
                                     </div>
-                                    <div class="col-sm-6"><input name="full_name" id="full_name" type="text"
+                                    <div class="col-sm-6">
+                                        <input class="form-control" name="full_name" id="full_name" type="text"
                                                                  value="${requestScope["staff"].getFullName()}"
                                                                  disabled>
                                     </div>
@@ -63,25 +61,25 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Gender</lable>
+                                        <label>Gender</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <input class="gender" type="radio" name="gender" id="male" value="Nam"
                                                <c:if test='${staff.getGender()=="Nam"}'>checked="true"</c:if> disabled>
-                                        <lable>Nam</lable>
-                                        <input class="gender" type="radio" name="gender" id="female" value="Nu"
+                                        <label>Nam</label>
+                                        <input  class="gender" type="radio" name="gender" id="female" value="Nu"
                                                <c:if test='${staff.getGender()=="Nu"}'>checked="true" </c:if>disabled>
-                                        <lable>Nu</lable>
+                                        <label>Nu</label>
                                     </div>
                                     <div class="col-sm-4"></div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Date Of Birth</lable>
+                                        <label>Date Of Birth</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="date" name="date_of_birth" id="date_of_birth"
+                                        <input class="form-control" type="date" name="date_of_birth" id="date_of_birth"
                                                value="${requestScope["staff"].getDateOfBirth()}" disabled>
                                     </div>
                                     <div class="col-sm-4"></div>
@@ -89,10 +87,10 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>ID Card</lable>
+                                        <label>ID Card</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="id_card" id="id_card"
+                                        <input class="form-control" type="text" name="id_card" id="id_card"
                                                value="${requestScope["staff"].getIdCard()}" disabled>
                                     </div>
                                     <div class="col-sm-4"></div>
@@ -100,10 +98,10 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Email</lable>
+                                        <label>Email</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="email" id="email"
+                                        <input class="form-control" type="text" name="email" id="email"
                                                value="${requestScope["staff"].getEmail()}" disabled>
                                     </div>
 
@@ -112,10 +110,10 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Phone</lable>
+                                        <label>Phone</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="phone" id="phone"
+                                        <input class="form-control" type="text" name="phone" id="phone"
                                                value="${requestScope["staff"].getPhone()}" disabled>
                                     </div>
                                     <div class="col-sm-4"></div>
@@ -126,8 +124,7 @@
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="col-sm-6">
-                                       <textarea name="address" id="address" cols="40" rows="5"
-                                                 style="resize: none; text-align: left;" disabled>
+                                       <textarea class="form-control" name="address" id="address" cols="5" style="resize: none; text-align: left;" disabled>
                                            ${requestScope["staff"].getAddress()}
                                        </textarea>
                                     </div>
@@ -136,7 +133,7 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Image</lable>
+                                        <label>Image</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <img id='output' height="150px" width="150px" src="${staff.getImage()}"
@@ -148,7 +145,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Position</lable>
+                                        <label>Position</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <select name="position" id="position" disabled>
@@ -175,10 +172,10 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Pay</lable>
+                                        <label>Pay</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="number" name="pay" id="pay"
+                                        <input class="form-control" type="number" name="pay" id="pay"
                                                value="${requestScope["staff"].getPay()}" disabled>
                                     </div>
                                     <div class="col-sm-4"></div>
@@ -186,7 +183,7 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable>Status</lable>
+                                        <label>Status</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <select name="status" id="status" disabled>
@@ -206,8 +203,7 @@
                                         <label>Description</label>
                                     </div>
                                     <div class="col-sm-6">
-                                         <textarea name="description" id="description" cols="40" rows="10"
-                                                   aria-hidden="true"
+                                         <textarea class="form-control"  name="description" id="description"  rows="10"
                                                    style="resize: none; text-align: left;" disabled>
                                              ${requestScope["staff"].getDescription()}
                                          </textarea>
@@ -217,11 +213,19 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <lable></lable>
+                                        <label></label>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <button type="submit" onclick="isDelete()">Delete</button>
-
+                                    <div class="col-sm-3">
+                                        <button type="submit" onclick="isDelete()" class="btn btn-outline-danger"
+                                                data-toggle="tooltip"
+                                                data-placement="top" title="Delete">
+                                            <i class="fas fa-ban"></i>
+                                          <span>Delete</span>
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="button" class="btn btn-outline-dark" onclick='window.location.href="${pageContext.request.contextPath}/staffs?action=list"' >
+                                            <i class="fas fa-arrow-left"></i> <span>Back</span></button>
                                     </div>
                                     <div class="col-sm-4"></div>
                                 </div>
@@ -268,8 +272,7 @@
         if (confirm("Are you sure delete " + name + " !")) {
             alert("Delete success !");
             document.getElementById("form-delete").method = "post";
-        }
-        ;
+        };
     }
 </script>
 </html>

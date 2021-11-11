@@ -7,8 +7,9 @@ import java.util.List;
 
 
 public interface IStaffService {
-
     List<Staff> findAll() ;
+
+    List<Staff> findAllActive() ;
 
     List<Staff> findAllInactive() ;
 
@@ -22,5 +23,11 @@ public interface IStaffService {
 
     void delete(int id) ; //delete mem ;
 
-    List<Staff> search(String name);
+    List<Staff> search(String properties, String search);
+
+    List<Staff> searchStaffInactive(String properties, String search);
+
+    void removeData(int id) ;
+
+    List<Staff>  listStaffNotHaveAccount() ;
 }

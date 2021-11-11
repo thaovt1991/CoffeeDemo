@@ -5,7 +5,7 @@
 
 <head>
 
-    <title>List Staffr</title>
+    <title>List Staff</title>
     <style>
         .id {
             width: 5%;
@@ -67,115 +67,124 @@
                 <div class="row">
                     <div class="col-12">
                         <div>
-                            <h1 class="header-title mb-3">List staff !</h1>
+                            <h1 class="header-title mb-3">List staffs !</h1>
                         </div>
                     </div>
                 </div>
                 <!-- end row -->
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="card-box" >
-                            <%--                            <div style="float: left"> <h5 class="mt-0 font-14 mb-3">Contacts</h5></div>--%>
-                            <%--                            <div style="float: right">--%>
-                            <li class="d-none d-sm-block">
-                                <form class="app-search" method="post" action="/staffs?action=search">
-                                    <div class="app-search-box">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="name" id="name" placeholder="Search by name...">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-primary " type="submit" >
-                                                    <i class="fas fa-search"></i>
-                                                </button>
+                        <div class="card-box row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-8">
+                                <li class="d-none d-sm-block">
+                                    <form class="app-search" method="post"
+                                          action="${pageContext.request.contextPath}/staffs?action=search">
+                                        <div class="app-search-box">
+                                            <div class="input-group" style="border: none">
+                                                <div class="form-control">
+                                                <label for="properties" style="font-size: 16px">Properties</label>
+                                                <select name="properties" id="properties" style="width: 120px">
+                                                    <option value="Name">Name</option>
+                                                    <option value="Gender">Gender</option>
+                                                    <option value="Position">Position</option>
+                                                </select>
+                                                </div>
+                                                <input type="text" class="form-control" name="search" id="search"
+                                                       placeholder="Search...">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-primary " type="submit">
+                                                        <i class="fas fa-search"></i>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </form>
-                            </li>
+                                    </form>
+                                </li>
+                            </div>
                         </div>
 
 
-                        </div>
-                        <br>
-                        <div class="table-responsive">
-                            <table class="table table-hover mails m-0 table table-actions-bar table-centered">
-                                <thead>
-                                <tr id="head-table">
-                                    <th class="id">#</th>
-                                    <th class="image">Image</th>
-                                    <th class="name">Full Name</th>
-                                    <th class="gender">Gender</th>
-                                    <th class="position">Position</th>
-                                    <th class="action" colspan="4">Action</th>
+                    </div>
+                    <br>
+                    <div class="table-responsive">
+                        <table class="table table-hover mails m-0 table table-actions-bar table-centered">
+                            <thead>
+                            <tr id="head-table">
+                                <th class="id">#</th>
+                                <th class="image">Image</th>
+                                <th class="name">Full Name</th>
+                                <th class="gender">Gender</th>
+                                <th class="position">Position</th>
+                                <th class="action" colspan="4">Action</th>
+                            </tr>
+                            </thead>
+
+
+                            <tbody>
+                            <c:forEach items='${requestScope["listStaffs"]}' var="staff">
+                                <tr>
+                                    <td>${staff.getId()}</td>
+                                    <td><img src="${staff.getImage()}" alt="image_staff"
+                                             style="width: 50px;height:50px"></td>
+                                    <td>${staff.getFullName()}</td>
+                                    <td>${staff.getGender()}</td>
+                                    <td>${staff.getPosition()}</td>
+                                        <%-- <td>--%>
+                                        <%--<fmt:formatNumber type="number" maxFractionDigits="3"--%>
+                                        <%-- value="${staff.getPay()}"></fmt:formatNumber>--%>
+                                        <%--</td>--%>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-secondary"
+                                                data-toggle="tooltip" data-placement="top" title="Edit"
+                                                onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=edit&id=${staff.getId()}'">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-info"
+                                                data-toggle="tooltip"
+                                                data-placement="top" title="Details"
+                                                onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=details&id=${staff.getId()}'">
+                                            <i class="fas fa-search-plus"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-success"
+                                                data-toggle="tooltip"
+                                                data-placement="top" title="Create Account"
+                                                onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=details&id=${staff.getId()}'">
+                                            <i class="fas fa-user-plus"></i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-danger"
+                                                data-toggle="tooltip"
+                                                data-placement="top" title="Delete"
+                                                onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=delete&id=${staff.getId()}'">
+                                            <i class="fas fa-ban"></i>
+                                        </button>
+                                    </td>
                                 </tr>
-                                </thead>
+                            </c:forEach>
+                            </tbody>
 
 
-                                <tbody>
-                                <c:forEach items='${requestScope["listStaffs"]}' var="staff">
-                                    <tr>
-                                        <td>${staff.getId()}</td>
-                                        <td><img src="${staff.getImage()}" alt="image_staff"
-                                                 style="width: 50px;height:50px"></td>
-                                        <td>${staff.getFullName()}</td>
-                                        <td>${staff.getGender()}</td>
-                                            <%--<td>${staff.getEmail()}</td>--%>
-                                            <%-- <td>${staff.getPhone()}</td>--%>
-                                        <td>${staff.getPosition()}</td>
-                                            <%-- <td>--%>
-                                            <%--<fmt:formatNumber type="number" maxFractionDigits="3"--%>
-                                            <%-- value="${staff.getPay()}"></fmt:formatNumber>--%>
-                                            <%--</td>--%>
-                                        <td>
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                    data-toggle="tooltip" data-placement="top" title="Edit"
-                                                    onclick="window.location.href ='/staffs?action=edit&id=${staff.getId()}'">
-                                                <i class="far fa-edit"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-outline-info"
-                                                    data-toggle="tooltip"
-                                                    data-placement="top" title="Details"
-                                                    onclick="window.location.href ='/staffs?action=details&id=${staff.getId()}'">
-                                                <i class="fas fa-search-plus"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-outline-success"
-                                                    data-toggle="tooltip"
-                                                    data-placement="top" title="Create Account"
-                                                    onclick="window.location.href ='/staffs?action=details&id=${staff.getId()}'">
-                                                <i class="fas fa-user-plus"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-outline-danger"
-                                                    data-toggle="tooltip"
-                                                    data-placement="top" title="Delete"
-                                                    onclick="window.location.href ='/staffs?action=delete&id=${staff.getId()}'">
-                                                <i class="fas fa-ban"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                </tbody>
-
-
-                            </table>
-                        </div>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- end container-fluid -->
-
-
-        <!-- Footer Start -->
-        <%@include file="/layout/footer.jsp" %>
-        <!-- end Footer -->
-
     </div>
-    <!-- end content -->
+    <!-- end container-fluid -->
+
+
+    <!-- Footer Start -->
+    <%@include file="/layout/footer.jsp" %>
+    <!-- end Footer -->
+
+</div>
+<!-- end content -->
 
 </div>
 <!-- END content-page -->

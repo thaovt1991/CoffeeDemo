@@ -47,17 +47,39 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box">
-                        <h5 class="mt-0 font-14 mb-3">Edit Information</h5>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h5 class="mt-0 font-14 mb-3">Edit Information</h5>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>
+                                    <c:if test='${requestScope["sucsess"] != null}'>
+                                                <span style="color: green"
+                                                      class="message">${requestScope["sucsess"]}</span>
+                                    </c:if>
+                                    <c:if test='${requestScope["error"] != null}'>
+                                        <span style="color: red" class="message">${requestScope["error"]}</span>
+                                    </c:if>
+                                </p>
+                            </div>
+                            <div class="col-sm-3"></div>
+                        </div>
                         <div class="table">
                             <form method="post">
                                 <div class="row">
                                     <div class="col-sm-2">
                                         <lable>Full Name</lable>
                                     </div>
-                                    <div class="col-sm-6"><input name="full_name" id="full_name" type="text"
+                                    <div class="col-sm-6"><input class="form-control" name="full_name" id="full_name" type="text"
                                                                  value="${requestScope["staff"].getFullName()}">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p >
+                                            <c:if test='${requestScope["messageFullName"] != null}'>
+                                                <span style="color: red" class="message">${requestScope["messageFullName"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -65,10 +87,10 @@
                                         <lable>Gender</lable>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input class="gender" type="radio" name="gender" id="male" value="Nam"
+                                        <input  class="gender" type="radio" name="gender" id="male" value="Nam"
                                                <c:if test='${staff.getGender()=="Nam"}'>checked="true"</c:if> >
                                         <lable>Nam</lable>
-                                        <input class="gender" type="radio" name="gender" id="female" value="Nu"
+                                        <input  class="gender" type="radio" name="gender" id="female" value="Nu"
                                                <c:if test='${staff.getGender()=="Nu"}'>checked="true"</c:if>>
                                         <lable>Nu</lable>
                                     </div>
@@ -80,10 +102,16 @@
                                         <lable>Date Of Birth</lable>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="date" name="date_of_birth" id="date_of_birth"
+                                        <input class="form-control" type="date" name="date_of_birth" id="date_of_birth"
                                                value="${requestScope["staff"].getDateOfBirth()}">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p >
+                                            <c:if test='${requestScope["messageDateOfBirth"] != null}'>
+                                                <span style="color: red" class="message">${requestScope["messageDateOfBirth"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -91,10 +119,17 @@
                                         <lable>ID Card</lable>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="id_card" id="id_card"
+                                        <input class="form-control" type="text" name="id_card" id="id_card"
                                                value="${requestScope["staff"].getIdCard()}">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["messageIdCard"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["messageIdCard"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -102,11 +137,18 @@
                                         <lable>Email</lable>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="email" id="email"
+                                        <input class="form-control" type="text" name="email" id="email"
                                                value="${requestScope["staff"].getEmail()}">
                                     </div>
 
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["messageEmail"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["messageEmail"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -114,10 +156,17 @@
                                         <lable>Phone</lable>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" name="phone" id="phone"
+                                        <input class="form-control" type="text" name="phone" id="phone"
                                                value="${requestScope["staff"].getPhone()}">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["messagePhone"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["messagePhone"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -125,12 +174,9 @@
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="col-sm-6">
-                                       <textarea name="address" id="address" cols="40" rows="5" style="resize: none; text-align: left;">
+                                       <textarea class="form-control" name="address" id="address" cols="40" rows="5" style="resize: none; text-align: left;font-family: Arial">
                                            ${requestScope["staff"].getAddress()}
                                        </textarea>
-
-<%--                                        <input type="text" name="address" id="address" value="${requestScope["staff"].getAddress()}" style="width: 100%; height: 100px;" >--%>
-<%--                                        <Input id="address" name="address" multiline rows="30" type="text" value="${requestScope["staff"].getAddress()}" />--%>
                                     </div>
                                     <div class="col-sm-4"></div>
                                 </div>
@@ -140,7 +186,7 @@
                                         <lable>Image</lable>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type='file' accept='image/*'
+                                        <input  type='file' accept='image/*'
                                                onchange='openFile(event)'
                                                name="fileUpdate"
                                                data-rule-required=true><br>
@@ -183,7 +229,7 @@
                                         <lable>Pay</lable>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="number" name="pay" id="pay"
+                                        <input class="form-control" type="number" name="pay" id="pay"
                                                value="${requestScope["staff"].getPay()}">
                                     </div>
                                     <div class="col-sm-4"></div>
@@ -211,9 +257,9 @@
                                         <label>Description</label>
                                     </div>
                                     <div class="col-sm-6">
-                                         <textarea name="description" id="description" cols="40" rows="10" aria-hidden="true"
+                                         <textarea class="form-control" name="description" id="description" cols="40" rows="10" aria-hidden="true"
                                                    style="resize: none; text-align: left;">
-                                             ${requestScope["staff"].getDescription()}
+                                             ${staff.getDescription()}
                                          </textarea>
                                     </div>
                                     <div class="col-sm-4"></div>
@@ -223,9 +269,14 @@
                                     <div class="col-sm-2">
                                         <lable></lable>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <button type="submit" class="btn btn-outline-secondary"
+                                    <div class="col-sm-3">
+                                        <button type="submit" class="btn btn-outline-primary"
                                                 data-toggle="tooltip" data-placement="top" title="Edit"><i class="far fa-edit"></i>Edit</button>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button type="button" class="btn btn-outline-dark"
+                                                onclick='window.location.href="${pageContext.request.contextPath}/staffs?action=list"' >
+                                            <i class="fas fa-arrow-left"></i> <span>Back</span></button>
                                     </div>
                                     <div class="col-sm-4"></div>
                                 </div>
