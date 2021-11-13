@@ -1,5 +1,7 @@
 package demo_coffee.controller;
 
+import demo_coffee.model.Account;
+import demo_coffee.service.AccountService;
 import demo_coffee.service.StaffService;
 import demo_coffee.model.Staff;
 import demo_coffee.units.Regex;
@@ -9,12 +11,14 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "StaffServlet", value = "/staffs")
 public class StaffServlet extends HttpServlet {
 
     StaffService staffService = new StaffService();
+    AccountService accountService = new AccountService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,6 +54,9 @@ public class StaffServlet extends HttpServlet {
             case "remove":
                 showRemove(request, response);
                 break;
+            case "create_account":
+                showCreateAccount(request, response);
+                break;
             default:
                 listStaffs(request, response);
                 break;
@@ -77,8 +84,6 @@ public class StaffServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
-            case "create_account":
-                break;
             case "delete":
                 deleteStaff(request, response);
                 break;
@@ -94,6 +99,13 @@ public class StaffServlet extends HttpServlet {
             case "remove":
                 remove(request, response);
                 break;
+            case "create_account":
+                try {
+                    createAccount(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
             default:
                 break;
         }
@@ -102,7 +114,8 @@ public class StaffServlet extends HttpServlet {
     private void listStaffs(HttpServletRequest request, HttpServletResponse response) {
         List<Staff> listStaffs = staffService.findAllActive();
         request.setAttribute("listStaffs", listStaffs);
-
+//        List<Staff> staffListHaveNotHaveAcount = staffService.listStaffNotHaveAccount();
+//        request.setAttribute("staffListHaveNotHaveAcount", staffListHaveNotHaveAcount);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("staff/list.jsp");
         try {
@@ -168,7 +181,10 @@ public class StaffServlet extends HttpServlet {
             request.setAttribute("messageFullName", "* Name cannot be left blank ");
         } else if (!Regex.isFullNameValidator(full_name)) {
             request.setAttribute("messageFullName", "* Can not name format ");
-        } else isName = true;
+        } else {
+            isName = true;
+            request.setAttribute("full_name", full_name);
+        }
 
         boolean isDay = false;
         if (date_of_birth.equals("")) {
@@ -434,7 +450,7 @@ public class StaffServlet extends HttpServlet {
         List<Staff> listSearch = staffService.search(properties, search);
         request.setAttribute("listSearch", listSearch);
         request.setAttribute("search", search);
-        request.setAttribute("properties", properties);
+        request.setAttribute("propertiesSelect", properties);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("staff/search.jsp");
         try {
@@ -467,7 +483,7 @@ public class StaffServlet extends HttpServlet {
         List<Staff> listSearch = staffService.searchStaffInactive(properties, search);
         request.setAttribute("listSearch", listSearch);
         request.setAttribute("search", search);
-        request.setAttribute("properties", properties);
+        request.setAttribute("propertiesSelect", properties);
         RequestDispatcher dispatcher = request.getRequestDispatcher("staff/search_inactive.jsp");
         try {
             dispatcher.forward(request, response);
@@ -497,6 +513,87 @@ public class StaffServlet extends HttpServlet {
         staffService.removeData(id);
         try {
             response.sendRedirect("/staffs?action=list_inactive");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showCreateAccount(HttpServletRequest request, HttpServletResponse response) {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        Staff staff = staffService.findById(id);
+        request.setAttribute("staff", staff);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("staff/create_account.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createAccount(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        Staff staff = staffService.findById(id);
+        request.setAttribute("staff", staff);
+
+
+        boolean checkAll = false;
+        int idUser = Integer.parseInt(request.getParameter("id"));
+        String username = request.getParameter("username");
+        String pass1 = request.getParameter("enter_password");
+        String pass2 = request.getParameter("confirm_password");
+        String permission = request.getParameter("permission");
+        Boolean status = true;
+        int value = Integer.parseInt(request.getParameter("status"));
+        if (value != 1) {
+            status = false;
+        }
+
+        boolean isUsername = false;
+        if (username.equals("")) {
+            request.setAttribute("errorUsername", "Username cannot be left blank");
+        } else if (!Regex.isUserNameValidator(username)) {
+            request.setAttribute("errorUsername", "Username has 6-16 characters, starting with lowercase letters");
+        } else isUsername = true;
+
+        boolean isPass1 = false;
+        if (pass1.equals("")) {
+            request.setAttribute("errorPass1", "Password cannot be left blank");
+        } else if (!Regex.isPasswordHardValidator(pass1)) {
+            request.setAttribute("errorPass1s", "Minimum 8 characters, at least one letter, one number and one special character");
+        } else isPass1 = true;
+
+        boolean isPass2 = false;
+        if (pass2.equals("")) {
+            request.setAttribute("errorPass2", "Password cannot be left blank");
+        } else if (!Regex.isPasswordHardValidator(pass2)) {
+            request.setAttribute("errorPass2", "Minimum 8 characters, at least one letter, one number and one special character");
+        } else if(!pass1.equals(pass2)){
+            request.setAttribute("errorPass2", "Passwords are not the same");
+        }
+        else isPass2 = true;
+
+        checkAll = isUsername && isPass1 && isPass2 ;
+
+        if (checkAll) {
+            Account account = new Account(idUser, username, pass1, permission, status);
+            boolean isInsert = accountService.save(account);
+            if (isInsert) {
+                request.setAttribute("sucsess", " ***** Create account success ***** ");
+            } else
+                request.setAttribute("error", " **** Create account fail ****");
+        }else{
+            request.setAttribute("error", " **** Create account fail ****");
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("staff/create_account.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

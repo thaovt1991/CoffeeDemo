@@ -1,15 +1,17 @@
 
-<div class="left-side-menu">
+<div class="left-side-menu" >
 
-
-    <div class="user-box">
-        <div class="float-left">
-            <img src="/assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
-        </div>
-        <div class="user-info">
-            <a href="#">Stanley Jones</a>
-            <p class="text-muted m-0">Administrator</p>
-        </div>
+    <div >
+        <a href="${pageContext.request.contextPath}/login">
+        <img src="/assets/images/logo/logo-coffee-2.png" alt="logo" width="100%">
+        </a>
+<%--        <div class="float-left">--%>
+<%--            <img src="/assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle">--%>
+<%--        </div>--%>
+<%--        <div class="user-info">--%>
+<%--            <a href="#">Stanley Jones</a>--%>
+<%--            <p class="text-muted m-0">Administrator</p>--%>
+<%--        </div>--%>
     </div>
 
     <!--- Sidemenu -->
@@ -20,7 +22,7 @@
             <li class="menu-title">Navigation</li>
 
             <li>
-                <a href="http://localhost:8080">
+                <a href="${pageContext.request.contextPath}/login">
                     <i class="ti-home"></i>
                     <span> Dashboard </span>
                 </a>
@@ -33,6 +35,19 @@
 <%--                    <span class="badge badge-primary float-right">11</span>--%>
 <%--                </a>--%>
 <%--            </li>--%>
+
+            <li>
+                <a href="javascript: void(0);">
+                    <i class="fas fa-store"></i>
+                    <span> Manager Sell </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li><a href="#"> Create Oder</a></li>
+                    <li><a href="#">All Oder</a></li>
+                </ul>
+            </li>
+
             <li>
                 <a href="javascript: void(0);">
                     <i class="ti-paint-bucket"></i>
@@ -78,18 +93,42 @@
 <%--                    <span> Typography </span>--%>
 <%--                </a>--%>
 <%--            </li>--%>
-
             <li>
                 <a href="javascript: void(0);">
                     <i class="ti-pencil-alt"></i>
-                    <span>  Forms  </span>
+                    <span> Manager Revenue </span>
                     <span class="menu-arrow"></span>
                 </a>
                 <ul class="nav-second-level" aria-expanded="false">
-                    <li><a href="forms-general.html">General Elements</a></li>
-                    <li><a href="forms-advanced.html">Advanced Form</a></li>
+                    <li><a href="#">Revenue By Date</a></li>
+                    <li><a href="#">Revenue By Option</a></li>
+                    <li><a href="#"></a>Revenue By Manager</li>
                 </ul>
             </li>
+
+            <li>
+                <a href="javascript: void(0);">
+                    <i class="fas fa-mail-bulk"></i>
+                    <span> Contact  </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li><a href="#">New Contact</a></li>
+                    <li><a href="#">All Contact</a></li>
+                </ul>
+            </li>
+
+<%--            <li>--%>
+<%--                <a href="javascript: void(0);">--%>
+<%--                    <i class="ti-pencil-alt"></i>--%>
+<%--                    <span>  Forms  </span>--%>
+<%--                    <span class="menu-arrow"></span>--%>
+<%--                </a>--%>
+<%--                <ul class="nav-second-level" aria-expanded="false">--%>
+<%--                    <li><a href="forms-general.html">General Elements</a></li>--%>
+<%--                    <li><a href="forms-advanced.html">Advanced Form</a></li>--%>
+<%--                </ul>--%>
+<%--            </li>--%>
 
 <%--            <li>--%>
 <%--                <a href="javascript: void(0);">--%>

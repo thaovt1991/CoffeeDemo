@@ -5,7 +5,7 @@
 
 <head>
 
-    <title>List Staff</title>
+    <title>List Staffs</title>
     <style>
         .id {
             width: 5%;
@@ -42,10 +42,10 @@
     <%@include file="/layout/head.jsp" %>
 </head>
 
-<body>
+<body  >
 
 <!-- Begin page -->
-<div id="wrapper">
+<div id="wrapper" >
 
 
     <!-- Topbar Start -->
@@ -83,12 +83,12 @@
                                         <div class="app-search-box">
                                             <div class="input-group" style="border: none">
                                                 <div class="form-control">
-                                                <label for="properties" style="font-size: 16px">Properties</label>
-                                                <select name="properties" id="properties" style="width: 120px">
-                                                    <option value="Name">Name</option>
-                                                    <option value="Gender">Gender</option>
-                                                    <option value="Position">Position</option>
-                                                </select>
+                                                    <label for="properties" style="font-size: 16px">Properties </label>
+                                                    <select name="properties" id="properties" style="width: 120px">
+                                                        <option value="Name">Name</option>
+                                                        <option value="Gender">Gender</option>
+                                                        <option value="Position">Position</option>
+                                                    </select>
                                                 </div>
                                                 <input type="text" class="form-control" name="search" id="search"
                                                        placeholder="Search...">
@@ -150,11 +150,26 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-success"
+                                        <button
+                                                type="button" class="btn btn-outline-success"
                                                 data-toggle="tooltip"
                                                 data-placement="top" title="Create Account"
-                                                onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=details&id=${staff.getId()}'">
+                                                onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=create_account&id=${staff.getId()}'">
                                             <i class="fas fa-user-plus"></i>
+<%--                                                <c:if test='${requestScope["staffListHaveNotHaveAcount"].equals(staff)}'>--%>
+<%--                                                    type="button" class="btn btn-outline-success"--%>
+<%--                                                    data-toggle="tooltip"--%>
+<%--                                                    data-placement="top" title="Create Account"--%>
+<%--                                                    onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=create_account&id=${staff.getId()}'">--%>
+<%--                                                    <i class="fas fa-user-plus"></i>--%>
+<%--                                                </c:if>--%>
+<%--                                                <c:if test='${!requestScope["staffListHaveNotHaveAcount"].equals(staff)}'>--%>
+<%--                                                    type="button" class="btn btn-outline-success"--%>
+<%--                                                    data-toggle="tooltip"--%>
+<%--                                                    data-placement="top" title="Edit Account" >--%>
+<%--                                                    &lt;%&ndash;  onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=create_account&id=${staff.getId()}'">&ndash;%&gt;--%>
+<%--                                                    <i class="fas fa-user-cog"></i>--%>
+<%--                                                </c:if>--%>
                                         </button>
                                     </td>
                                     <td>

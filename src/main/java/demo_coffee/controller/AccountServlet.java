@@ -4,6 +4,7 @@ import demo_coffee.model.Staff;
 import demo_coffee.service.AccountService;
 import demo_coffee.model.Account;
 import demo_coffee.service.StaffService;
+import demo_coffee.units.Regex;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -27,7 +28,7 @@ public class AccountServlet extends HttpServlet {
         }
         switch (action) {
             case "create":
-                showCreate(request,response);
+                showCreate(request, response);
                 break;
             case "edit":
                 break;
@@ -65,7 +66,7 @@ public class AccountServlet extends HttpServlet {
         switch (action) {
             case "create":
                 try {
-                    saveAccount(request,response) ;
+                    saveAccount(request, response);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -98,6 +99,8 @@ public class AccountServlet extends HttpServlet {
     private void listAccountActive(HttpServletRequest request, HttpServletResponse response) {
         List<Account> listAccountActive = accountService.findAllActive();
         request.setAttribute("listAcount", listAccountActive);
+
+
         List<Staff> staffList = staffService.findAll();
         List<Staff> staffListHaveAccount = new ArrayList<>();
         for (Account account : listAccountActive) {
@@ -107,7 +110,9 @@ public class AccountServlet extends HttpServlet {
                 }
             }
         }
+
         request.setAttribute("staffListHaveAccount", staffListHaveAccount);
+
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("account/list.jsp");
         try {
@@ -119,9 +124,9 @@ public class AccountServlet extends HttpServlet {
         }
     }
 
-    private void showCreate(HttpServletRequest request, HttpServletResponse response){
+    private void showCreate(HttpServletRequest request, HttpServletResponse response) {
         List<Staff> staffList = staffService.listStaffNotHaveAccount();
-        request.setAttribute("listStaffActive",staffList);
+        request.setAttribute("listStaffActive", staffList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("account/create.jsp");
         try {
             dispatcher.forward(request, response);
@@ -131,14 +136,15 @@ public class AccountServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
     private void saveAccount(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        List<Staff> staffList = staffService.findAllActive();
-        request.setAttribute("listStaffActive",staffList);
+
+
 
         int idUser = Integer.parseInt(request.getParameter("full_name"));
-        String username = request.getParameter("username") ;
-        String pass1= request.getParameter("enter_password") ;
-        String pass2= request.getParameter("confirm_password") ;
+        String username = request.getParameter("username");
+        String pass1 = request.getParameter("enter_password");
+        String pass2 = request.getParameter("confirm_password");
         String permission = request.getParameter("permission");
         Boolean status = true;
         int value = Integer.parseInt(request.getParameter("status"));
@@ -146,26 +152,43 @@ public class AccountServlet extends HttpServlet {
             status = false;
         }
 
-        boolean check_pass = pass1.equals(pass2) ;
+        boolean isUsername = false;
+        if (username.equals("")) {
+            request.setAttribute("errorUsername", "Username cannot be left blank");
+        } else if (!Regex.isUserNameValidator(username)) {
+            request.setAttribute("errorUsername", "Username has 6-16 characters, starting with lowercase letters");
+        } else isUsername = true;
 
-        boolean checkAll = true ;
+        boolean isPass1 = false;
+        if (pass1.equals("")) {
+            request.setAttribute("errorPass1", "Password cannot be left blank");
+        } else if (!Regex.isPasswordHardValidator(pass1)) {
+            request.setAttribute("errorPass1s", "Minimum 8 characters, at least one letter, one number and one special character");
+        } else isPass1 = true;
 
-        if(checkAll){
-            Account account = new Account(idUser,username,pass1,permission,status);
+        boolean isPass2 = false;
+        if (pass2.equals("")) {
+            request.setAttribute("errorPass2", "Password cannot be left blank");
+        } else if (!Regex.isPasswordHardValidator(pass2)) {
+            request.setAttribute("errorPass2", "Minimum 8 characters, at least one letter, one number and one special character");
+        } else if (!pass1.equals(pass2)) {
+            request.setAttribute("errorPass2", "Passwords are not the same");
+        } else isPass2 = true;
+        boolean checkAll = false;
+
+        checkAll = isUsername && isPass1 && isPass2;
+
+        if (checkAll) {
+            Account account = new Account(idUser, username, pass1, permission, status);
             boolean isInsert = accountService.save(account);
             if (isInsert) {
-                request.setAttribute("sucsess", " **** Them nhan thanh cong ");
+                request.setAttribute("sucsess", " ***** Create account success ***** ");
             } else
-                request.setAttribute("error", " **** Them khach hang khong thanh cong, hay thu lai");
+                request.setAttribute("error", " **** Create account fail ****");
+        } else {
+            request.setAttribute("error", " **** Create account fail ****");
         }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("account/create.jsp");
-        try {
-            dispatcher.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+        showCreate(request,response);
 
+    }
 }

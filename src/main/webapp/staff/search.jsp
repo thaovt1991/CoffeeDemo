@@ -5,7 +5,7 @@
 
 <head>
 
-    <title>List Staff</title>
+    <title>List Staffs Search</title>
     <style>
         .id {
             width: 5%;
@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div>
-                            <h1 class="header-title mb-3">List staff !</h1>
+                            <h1 class="header-title mb-3">List staffs !</h1>
                         </div>
                     </div>
                 </div>

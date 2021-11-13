@@ -174,7 +174,7 @@
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="col-sm-6">
-                                       <textarea class="form-control" name="address" id="address" cols="40" rows="5" style="resize: none; text-align: left;font-family: Arial">
+                                       <textarea class="form-control" name="address" id="address"  style="resize: none; text-align: left;font-family: Arial">
                                            ${requestScope["staff"].getAddress()}
                                        </textarea>
                                     </div>
@@ -257,7 +257,7 @@
                                         <label>Description</label>
                                     </div>
                                     <div class="col-sm-6">
-                                         <textarea class="form-control" name="description" id="description" cols="40" rows="10" aria-hidden="true"
+                                         <textarea class="form-control" name="description" id="description"
                                                    style="resize: none; text-align: left;">
                                              ${staff.getDescription()}
                                          </textarea>
@@ -281,32 +281,6 @@
                                     <div class="col-sm-4"></div>
                                 </div>
                             </form>
-                            <br>
-                            <%--                            <div class="row">--%>
-                            <%--                                <div id="footer" class="col-sm-12">--%>
-                            <%--                                    <p style="color: green">--%>
-                            <%--                                        <c:if test='${requestScope["message"] != null}'>--%>
-                            <%--                                            <span class="message">${requestScope["message"]}</span>--%>
-                            <%--                                        </c:if>--%>
-                            <%--                                    </p>--%>
-                            <%--                                    <p style="color: red">--%>
-                            <%--                                        <c:if test='${requestScope["messageFullName"] != null}'>--%>
-                            <%--                                            <span class="message">${requestScope["messageFullName"]}</span>--%>
-                            <%--                                        </c:if>--%>
-                            <%--                                    </p>--%>
-                            <%--                                    <p style="color: red">--%>
-                            <%--                                        <c:if test='${requestScope["messageEmail"] != null}'>--%>
-                            <%--                                            <span class="message">${requestScope["messageEmail"]}</span>--%>
-                            <%--                                        </c:if>--%>
-                            <%--                                    </p>--%>
-                            <%--                                    <p style="color: red">--%>
-                            <%--                                        <c:if test='${requestScope["update_error"] != null}'>--%>
-                            <%--                                            <span class="message">${requestScope["update_error"]}</span>--%>
-                            <%--                                        </c:if>--%>
-                            <%--                                    </p>--%>
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
-                            <%--                        </div>--%>
                         </div>
                     </div>
                 </div>

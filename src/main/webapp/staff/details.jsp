@@ -123,7 +123,7 @@
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="col-sm-6">
-                                       <textarea class="form-control" name="address" id="address" cols="40" rows="5" style="resize: none; text-align: left;"disabled>
+                                       <textarea class="form-control" name="address" id="address"  style="resize: none; text-align: left;"disabled>
                                            ${requestScope["staff"].getAddress()}
                                        </textarea>
                                     </div>
@@ -201,7 +201,7 @@
                                         <label>Description</label>
                                     </div>
                                     <div class="col-sm-6">
-                                         <textarea class="form-control" name="description" id="description" cols="40" rows="10" aria-hidden="true"
+                                         <textarea class="form-control" name="description" id="description"
                                                    style="resize: none; text-align: left;" disabled>
                                              ${requestScope["staff"].getDescription()}
                                          </textarea>

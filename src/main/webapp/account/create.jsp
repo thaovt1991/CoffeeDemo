@@ -47,7 +47,24 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card-box">
-                        <h5 class="mt-0 font-14 mb-3">Create New Account</h5>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h5 class="mt-0 font-14 mb-3">Create New Account</h5>
+                            </div>
+                            <div class="col-sm-6">
+                                <p>
+                                    <c:if test='${requestScope["sucsess"] != null}'>
+                                                <span style="color: green"
+                                                      class="message">${requestScope["sucsess"]}</span>
+                                    </c:if>
+                                    <c:if test='${requestScope["error"] != null}'>
+                                        <span style="color: red" class="message">${requestScope["error"]}</span>
+                                    </c:if>
+                                </p>
+                            </div>
+                            <div class="col-sm-3"></div>
+                        </div>
+
                         <div class="table">
                             <form method="post">
                                 <div class="row">
@@ -86,7 +103,14 @@
                                     <div class="col-sm-6">
                                         <input class="form-control" type="text" name="username" id="username" placeholder="Username">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["errorUsername"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["errorUsername"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -97,7 +121,14 @@
                                         <input class="form-control" type="password" name="enter_password" id="enter_password"
                                                placeholder="Enter password..">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["errorPass1"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["errorPass1"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -108,7 +139,14 @@
                                         <input class="form-control" type="password" name="confirm_password" id="confirm_password"
                                                placeholder="Confirm Password">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["errorPass2"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["errorPass2"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -155,31 +193,7 @@
                                     <div class="col-sm-4"></div>
                                 </div>
                             </form>
-                            <br>
-                            <%--                            <div class="row">--%>
-                            <%--                                <div id="footer" class="col-md-12">--%>
-                            <%--                                    <p style="color: green">--%>
-                            <%--                                        <c:if test='${requestScope["sucsess"] != null}'>--%>
-                            <%--                                            <span class="message">${requestScope["sucsess"]}</span>--%>
-                            <%--                                        </c:if>--%>
-                            <%--                                    </p>--%>
-                            <%--                                    <p style="color: red">--%>
-                            <%--                                        <c:if test='${requestScope["messageFullName"] != null}'>--%>
-                            <%--                                            <span class="message">${requestScope["messageFullName"]}</span>--%>
-                            <%--                                        </c:if>--%>
-                            <%--                                    </p>--%>
-                            <%--                                    <p style="color: red">--%>
-                            <%--                                        <c:if test='${requestScope["messageEmail"] != null}'>--%>
-                            <%--                                            <span class="message">${requestScope["messageEmail"]}</span>--%>
-                            <%--                                        </c:if>--%>
-                            <%--                                    </p>--%>
-                            <%--                                    <p style="color: red">--%>
-                            <%--                                        <c:if test='${requestScope["error"] != null}'>--%>
-                            <%--                                            <span class="message">${requestScope["error"]}</span>--%>
-                            <%--                                        </c:if>--%>
-                            <%--                                    </p>--%>
-                            <%--                                </div>--%>
-                            <%--                            </div>--%>
+
                         </div>
                     </div>
                 </div>

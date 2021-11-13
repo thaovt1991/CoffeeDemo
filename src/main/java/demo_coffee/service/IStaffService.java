@@ -30,4 +30,5 @@ public interface IStaffService {
     void removeData(int id) ;
 
     List<Staff>  listStaffNotHaveAccount() ;
+
 }

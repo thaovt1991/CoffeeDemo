@@ -75,7 +75,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <input class="form-control" name="full_name" id="full_name" type="text"
-                                               placeholder="Full name">
+                                               placeholder="Full name" >
                                     </div>
                                     <div class="col-sm-4">
                                         <p>
@@ -93,9 +93,9 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="radio" name="gender" value="Nam" checked="check">
-                                        <label>Nam</label>
+                                        Nam
                                         <input type="radio" name="gender" value="Nu">
-                                        <label>Nu</label>
+                                        Nu
                                     </div>
                                     <div class="col-sm-4"></div>
                                 </div>
@@ -256,8 +256,8 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <button type="submit" class="btn btn-outline-success">
-                                            <i class="fad fa-user-plus"></i>
-                                            <span>Create</span></button>
+                                            <i class="fas fa-user-plus"></i>
+                                            <span>Add</span></button>
                                     </div>
                                     <div class="col-sm-3">
                                         <button type="button" class="btn btn-outline-dark"
