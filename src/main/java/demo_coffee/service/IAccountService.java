@@ -28,6 +28,6 @@ public interface IAccountService {
 
     List<Account> searchInactive(String username);
 
-    void removeData(int id) ;
+    boolean removeDataAccount(int id) throws SQLException ;
 }
 

@@ -19,28 +19,37 @@ import java.util.TreeMap;
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
 
+    static Staff staffOfAccount = null ;
+    static Account accountLogin = null ;
     AccountService accountService = new AccountService();
     StaffService staffService = new StaffService();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/home.jsp");
-//        try {
-//            dispatcher.forward(request, response);
-//        } catch (ServletException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+      request.setAttribute("staffOfAccount",staffOfAccount);
+     RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        loginAccount(request,response);
+    }
+
+
+
+    public void loginAccount(HttpServletRequest request, HttpServletResponse response){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         RequestDispatcher dispatcher = null;
-        Account accountLogin = null;
+
         List<Account> accountList = accountService.findAllActive();
         for (Account account : accountList) {
             if (account.getUsername().equals(username)) {
@@ -52,14 +61,14 @@ public class LoginServlet extends HttpServlet {
         }
 
         if (accountLogin == null) {
-            String error ="<script>\n" +
+            String error1 ="<script>\n" +
                     "    alert(\"Username or password does not exist\");\n" +
                     "</script>";
-            request.setAttribute("error", error);
+            request.setAttribute("message", error1);
             dispatcher = request.getRequestDispatcher("index.jsp");
         } else if (accountLogin.isStatus()) {
             List<Staff> staffList = staffService.findAllActive();
-            Staff staffOfAccount = new Staff();
+
             for (Staff st : staffList) {
                 if (st.getId() == accountLogin.getIdUser()) {
                     staffOfAccount = st;
@@ -67,14 +76,25 @@ public class LoginServlet extends HttpServlet {
                 }
             }
             if (staffOfAccount != null) {
-                request.setAttribute("staff", staffOfAccount);
+                String login_success ="<script>\n" +
+                        "    alert(\"Login Success !\");\n" +
+                        "</script>";
+                request.setAttribute("login_success", login_success);
+
+                request.setAttribute("staffOfAccount",staffOfAccount);
                 dispatcher = request.getRequestDispatcher("home.jsp");
             } else {
-                request.setAttribute("error", "Staff has been locked , account don't login");
+                String error2 ="<script>\n" +
+                        "    alert(\"Staff has been locked , account don't login\");\n" +
+                        "</script>";
+                request.setAttribute("message", error2);
                 dispatcher = request.getRequestDispatcher("index.jsp");
             }
         } else {
-            request.setAttribute("error", "Account has been locked");
+            String error3 ="<script>\n" +
+                    "    alert(\"Account has been locked\");\n" +
+                    "</script>";
+            request.setAttribute("message", error3);
             dispatcher = request.getRequestDispatcher("index.jsp");
         }
         try {

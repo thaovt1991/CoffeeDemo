@@ -146,12 +146,22 @@
                                             </button>
                                         </td>
                                         <td>
-                                            <button type="button" class="btn btn-outline-success"
-                                                    data-toggle="tooltip"
-                                                    data-placement="top" title="Create Account"
-                                                    onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=details&id=${staff.getId()}'">
-                                                <i class="fas fa-user-plus"></i>
-                                            </button>
+                                            <c:if test='${!staff.isStatusAccount()}'>
+                                                <button
+                                                        type="button" class="btn btn-outline-success"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top" title="Create Account"
+                                                        onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=create_account&id=${staff.getId()}'">
+                                                    <i class="fas fa-user-plus"></i>
+                                                </button>
+                                            </c:if>
+                                            <c:if test='${staff.isStatusAccount()}'>
+                                                <button type="button" class="btn btn-outline-warning"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top" title="Edit Account" >
+                                                    <i class="fas fa-user-cog"></i>
+                                                </button>
+                                            </c:if>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-outline-danger"

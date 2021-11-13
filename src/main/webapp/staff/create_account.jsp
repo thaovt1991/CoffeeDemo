@@ -83,7 +83,7 @@
                                         <label for="full_name">Full Name</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <select name="full_name" id="full_name" >
+                                        <select name="full_name" id="full_name" disabled>
                                             <option value='${staff.getId()}'>${staff.getId()}
                                                 - ${staff.getFullName()}</option>
                                         </select>
@@ -182,7 +182,11 @@
                                         <label></label>
                                     </div>
                                     <div class="col-sm-3">
-                                        <button type="submit" class="btn btn-outline-success">
+                                        <button type="submit" class="btn btn-outline-success"
+                                                <c:if test='${sucess != null}'>
+                                                    disabled
+                                                </c:if>
+                                        >
                                             <span>Create</span></button>
                                     </div>
                                     <div class="col-sm-3">

@@ -22,6 +22,7 @@ public class AccountServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("staffOfAccount",LoginServlet.staffOfAccount);
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -139,8 +140,6 @@ public class AccountServlet extends HttpServlet {
 
     private void saveAccount(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 
-
-
         int idUser = Integer.parseInt(request.getParameter("full_name"));
         String username = request.getParameter("username");
         String pass1 = request.getParameter("enter_password");
@@ -183,6 +182,7 @@ public class AccountServlet extends HttpServlet {
             boolean isInsert = accountService.save(account);
             if (isInsert) {
                 request.setAttribute("sucsess", " ***** Create account success ***** ");
+                staffService.updateStatusAccount(idUser);
             } else
                 request.setAttribute("error", " **** Create account fail ****");
         } else {

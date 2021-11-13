@@ -13,8 +13,9 @@
 
 <!-- Begin page -->
 <div id="wrapper" >
-
-
+    <c:if test="${login_success != null}">
+        ${login_success}
+    </c:if>
     <!-- Topbar Start -->
     <%@include file="/layout/navbar.jsp" %>
     <!-- end Topbar --> <!-- ========== Left Sidebar Start ========== -->
@@ -25,8 +26,8 @@
     <!-- Start Page Content here -->
     <!-- ============================================================== -->
 
-    <div class="content-page" style="background-image: url(/assets/images/background/bg_pic.jpg)">
-        <img src="/assets/images/background/bg_pic.jpg" alt="">
+    <div class="content-page" >
+        <img src="/assets/images/logo/logo-coffee-2.png" alt="" width="100%" height="756px">
     </div>
     <!-- end container-fluid -->
 

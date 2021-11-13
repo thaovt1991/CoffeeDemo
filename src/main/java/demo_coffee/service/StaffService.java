@@ -79,10 +79,11 @@ public class StaffService implements IStaffService {
                 String address = rs.getString("address");
                 String image = rs.getString("image");
                 String position = rs.getString("position_staff");
+                Boolean isAccount = rs.getBoolean("status_account");
                 long pay = rs.getLong("pay");
                 boolean status_staff = rs.getBoolean("status_staff");
                 String description_staff = rs.getString("description_staff");
-                staffs.add(new Staff(id, full_name, gender, date_of_birth, id_card, email, phone, address, image, position, pay, status_staff, description_staff));
+                staffs.add(new Staff(id, full_name, gender, date_of_birth, id_card, email, phone, address, image, position, pay, status_staff, description_staff,isAccount));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -243,6 +244,21 @@ public class StaffService implements IStaffService {
     }
 
     @Override
+    public void updateStatusAccount(int id) {
+        String UPDATE_STATUS_ACCOUNT_SQL_INACTIVE = "UPDATE staffs SET status_account = ? WHERE id = ?";
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(UPDATE_STATUS_ACCOUNT_SQL_INACTIVE);
+            statement.setInt(1, 1);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public List<Staff> search(String properties, String search) {
         List<Staff> staffs = findAllActive();
         List<Staff> staffsSearch = new ArrayList<>();
@@ -305,25 +321,34 @@ public class StaffService implements IStaffService {
     }
 
     @Override
-    public void removeData(int id) {
+    public boolean removeData(int id) throws SQLException {
         String DELETE_STAFF_SQL = "DELETE FROM staffs WHERE id = ?";
         Connection connection = null;
+        boolean isRemoveData = false ;
         try {
             connection = getConnection();
+            connection.setAutoCommit(false);
+
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_STAFF_SQL);
             preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
+            isRemoveData = preparedStatement.executeUpdate() >0;
 
-            preparedStatement.executeUpdate();
-
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
+            connection.rollback();
+        }finally {
+            connection.setAutoCommit(true);
+            connection.close();
         }
+        return isRemoveData ;
     }
 
     @Override
     public List<Staff> listStaffNotHaveAccount() {
-       String SELECT_STAFF_NOT_HAVE_ACCOUNT = "SELECT * FROM staffs WHERE id NOT IN (SELECT id FROM accounts) AND status_staff = 1" ;
+//       String SELECT_STAFF_NOT_HAVE_ACCOUNT = "SELECT * FROM staffs WHERE id NOT IN (SELECT id FROM accounts) AND status_staff = 1" ;
+        String SELECT_STAFF_NOT_HAVE_ACCOUNT = "SELECT * FROM staffs WHERE  staff_account = 1" ;
         List<Staff> staffs = new ArrayList<>();
         try {
             Connection connection = getConnection();

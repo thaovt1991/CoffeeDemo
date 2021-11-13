@@ -5,38 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fbb3e25a-c2d8-4f40-8218-a28cffd5744b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/controller/LoginServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/images/background/ca-phe.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/staff/create_account.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/account/edit.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/AccountServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/AccountServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/LoginServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/LoginServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/StaffServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/StaffServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/model/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/model/Account.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/model/Staff.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/model/Staff.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/AccountService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/IAccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/IAccountService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/IStaffService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/IStaffService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/StaffService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/StaffService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/units/Regex.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/units/Regex.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/CoffeeDemo-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/CoffeeDemo-1.0-SNAPSHOT.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/war/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/war/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/controller/AccountServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/controller/AccountServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/controller/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/controller/LoginServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/controller/StaffServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/controller/StaffServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/model/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/model/Staff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/service/IAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/service/IAccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/service/IStaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/service/IStaffService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/service/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/service/StaffService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/account/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/account/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/app.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/app.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/bootstrap.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/css-1.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/css-1.css" afterDir="false" />
@@ -51,6 +49,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/fonts/themify.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/fonts/themify.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/fonts/typicons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/fonts/typicons.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/fonts/weathericons-regular-webfont.svg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/fonts/weathericons-regular-webfont.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/app.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/app.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/vendor.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/vendor.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/libs/bootstrap-colorpicker/bootstrap-colorpicker.min.css" afterDir="false" />
@@ -106,6 +105,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/libs/select2/select2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/libs/select2/select2.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/libs/select2/select2.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/libs/select2/select2.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/libs/summernote/summernote-bs4.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/libs/summernote/summernote-bs4.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/footer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/head.jsp" afterDir="false" />
@@ -113,13 +113,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/navbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/right-bar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/right-bar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/script.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/script.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/create.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/delete.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/delete.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/details.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/create_account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/create_account.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/remove.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/remove.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/restore.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/restore.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/search.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -175,7 +170,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Module3/Product" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Module3/JSPandJSTL/user-manager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -285,6 +280,7 @@
       <workItem from="1636716768458" duration="4749000" />
       <workItem from="1636724778111" duration="6916000" />
       <workItem from="1636733613418" duration="6090000" />
+      <workItem from="1636781547162" duration="15030000" />
     </task>
     <servers />
   </component>
@@ -305,26 +301,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/demo_coffee/controller/StaffServlet.java</url>
-          <line>114</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/demo_coffee/controller/LoginServlet.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/demo_coffee/controller/LoginServlet.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

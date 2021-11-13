@@ -22,6 +22,7 @@ public class StaffServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("staffOfAccount",LoginServlet.staffOfAccount);
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -97,7 +98,11 @@ public class StaffServlet extends HttpServlet {
                 searchInactive(request, response);
                 break;
             case "remove":
-                remove(request, response);
+                try {
+                    remove(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
                 break;
             case "create_account":
                 try {
@@ -114,9 +119,6 @@ public class StaffServlet extends HttpServlet {
     private void listStaffs(HttpServletRequest request, HttpServletResponse response) {
         List<Staff> listStaffs = staffService.findAllActive();
         request.setAttribute("listStaffs", listStaffs);
-//        List<Staff> staffListHaveNotHaveAcount = staffService.listStaffNotHaveAccount();
-//        request.setAttribute("staffListHaveNotHaveAcount", staffListHaveNotHaveAcount);
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("staff/list.jsp");
         try {
             dispatcher.forward(request, response);
@@ -508,7 +510,7 @@ public class StaffServlet extends HttpServlet {
         }
     }
 
-    private void remove(HttpServletRequest request, HttpServletResponse response) {
+    private void remove(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         int id = Integer.parseInt(request.getParameter("id"));
         staffService.removeData(id);
         try {
@@ -583,6 +585,8 @@ public class StaffServlet extends HttpServlet {
             boolean isInsert = accountService.save(account);
             if (isInsert) {
                 request.setAttribute("sucsess", " ***** Create account success ***** ");
+                staffService.updateStatusAccount(idUser);
+                request.setAttribute("success","create account susccess");
             } else
                 request.setAttribute("error", " **** Create account fail ****");
         }else{

@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login Coffee Demo</title>
 </head>
 <body>
 <!DOCTYPE html>
@@ -24,14 +24,16 @@
             background-image: url(/assets/images/background/ca-phe.jpg);
         }
     </style>
+    <link rel="shortcut icon" href="/assets/images/logo/logo-coffee-2.png">
 </head>
 <body>
 
-<div id="wrapper" class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
+<div id="wrapper" >
+<%--    <div class="col-3"></div>--%>
+<%--    <div class="col-6">--%>
     <form action="/login" id="form-login" method="post">
-        <h1 class="form-heading">COFFEE DEMO</h1>
+<%--       <img src="/assets/images/logo/logo-coffee-2.png" alt="" width="50%" height="50%" style="text-align: center">--%>
+        <h1 class="form-heading"><img src="/assets/images/logo/logo-coffee-2.png" alt="" width="50%" height="50%"></h1>
         <div class="form-group">
             <i class="far fa-user"></i>
             <input type="text" class="form-input" name ="username" id="username" placeholder="Username">
@@ -48,8 +50,8 @@
     </div>
     <div class="col-3">
         <p>
-            <c:if test="${error!= null}">
-                ${error}
+            <c:if test="${message!= null}">
+                ${message}
             </c:if>
         </p>
     </div>

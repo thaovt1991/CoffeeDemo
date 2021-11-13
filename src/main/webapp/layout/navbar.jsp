@@ -94,9 +94,9 @@
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <img src="${staff.getImage()}" alt="user-image" class="rounded-circle" width="100%" height="100%">
+                <img src="${staffOfAccount.getImage()}" alt="user-image" class="rounded-circle" width="100%" height="100%">
                 <span class="pro-user-name ml-1">
-                                   ${staff.getFullName()} <i class="mdi mdi-chevron-down"></i>
+                                   ${staffOfAccount.getFullName()} <i class="mdi mdi-chevron-down"></i>
                             </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">

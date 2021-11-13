@@ -23,12 +23,16 @@ public interface IStaffService {
 
     void delete(int id) ; //delete mem ;
 
+    void updateStatusAccount(int id);
+
     List<Staff> search(String properties, String search);
 
     List<Staff> searchStaffInactive(String properties, String search);
 
-    void removeData(int id) ;
+   boolean removeData(int id) throws SQLException;
 
     List<Staff>  listStaffNotHaveAccount() ;
+
+
 
 }

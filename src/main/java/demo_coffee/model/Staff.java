@@ -15,6 +15,7 @@ public class Staff {
     private long pay;
     private boolean status ;
     private String description;
+    private boolean status_account =false;
 
 
     public Staff(){}
@@ -48,6 +49,29 @@ public class Staff {
         this.pay = pay;
         this.status = status;
         this.description = description;
+    }
+    public Staff(int id,String full_name, String gender, String date_of_birth, String id_card, String email, String phone, String address, String image, String position, long pay, boolean status, String description,Boolean status_account) {
+        this.id=id;
+        this.full_name = full_name;
+        this.gender = gender;
+        this.date_of_birth = date_of_birth;
+        this.id_card = id_card;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.image = image;
+        this.position = position;
+        this.pay = pay;
+        this.status = status;
+        this.description = description;
+        this.status_account = status_account;
+    }
+
+    public boolean isStatusAccount() {
+        return status_account;
+    }
+    public void setStatusAccount(boolean status_account) {
+        this.status_account = status_account;
     }
 
     public int getId() {

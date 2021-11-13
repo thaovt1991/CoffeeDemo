@@ -178,8 +178,34 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public void removeData(int id) {
+    public boolean removeDataAccount(int id) throws SQLException {
+        String DELETE_ACCOUNT_SQL = "DELETE FROM accounts WHERE id = ?";
+       // String UPDATE_STATUS_ACCOUNT_SQL_INACTIVE = "UPDATE staffs SET status_account = ? WHERE id = ?";
+        Connection connection = null;
+        boolean isRemove = false;
+        try {
+            connection = getConnection();
+            connection.setAutoCommit(false);
 
+            PreparedStatement preparedStatementAccount = connection.prepareStatement(DELETE_ACCOUNT_SQL);
+            preparedStatementAccount.setInt(1, id);
+//            System.out.println(preparedStatementAccount);
+            isRemove =  preparedStatementAccount.executeUpdate() >0;
+
+//            PreparedStatement statementStaff = connection.prepareStatement(UPDATE_STATUS_ACCOUNT_SQL_INACTIVE);
+//            statementStaff.setInt(1, 0);
+//            statementStaff.setInt(2, id);
+//            statementStaff.executeUpdate();
+
+            connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+           connection.rollback();
+        }finally {
+            connection.setAutoCommit(true);
+            connection.close();
+        }
+        return isRemove ;
     }
 
     private void printSQLException(SQLException ex) {

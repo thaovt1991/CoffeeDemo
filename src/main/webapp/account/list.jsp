@@ -138,7 +138,9 @@
                                         <%--</td>--%>
                                     <td>
                                         <button type="button" class="btn btn-outline-secondary"
-                                                data-toggle="tooltip" data-placement="top" title="Edit">
+                                                data-toggle="tooltip" data-placement="top" title="Edit"
+                                                onclick="window.location.href ='${pageContext.request.contextPath}/accounts?action=edit&id=${account.getIdUser()}'"
+                                        >
                                             <i class="far fa-edit"></i>
                                         </button>
                                     </td>

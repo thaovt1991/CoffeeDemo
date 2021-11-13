@@ -5,8 +5,10 @@
 
 <head>
 
-    <title>Create New Account</title>
+    <title>Edit Account</title>
+    <style>
 
+    </style>
     <%@include file="/layout/head.jsp" %>
 </head>
 
@@ -35,7 +37,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div>
-                            <h1 class="header-title mb-3">Create account</h1>
+                            <h1 class="header-title mb-3">Edit account</h1>
                         </div>
                     </div>
                 </div>
@@ -62,7 +64,6 @@
                             </div>
                             <div class="col-sm-3"></div>
                         </div>
-
                         <div class="table">
                             <form method="post">
                                 <div class="row">
@@ -70,7 +71,7 @@
                                         <label>Image</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <img id='output' height="150px" width="150px">
+                                        <img id='output' height="150px" width="150px" src="${staff.getImage()}">
                                     </div>
                                     <div class="col-sm-4">
                                     </div>
@@ -82,12 +83,11 @@
                                         <label for="full_name">Full Name</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <select name="full_name" id="full_name" onchange="displayImage()">
-                                            <c:forEach items='${requestScope["listStaffActive"] }' var="staff">
-                                                <option value='${staff.getId()}'>${staff.getId()}
-                                                    - ${staff.getFullName()}</option>
-                                            </c:forEach>
+                                        <select name="full_name" id="full_name" disabled>
+                                            <option value='${staff.getId()}'>${staff.getId()}
+                                                - ${staff.getFullName()}</option>
                                         </select>
+
                                     </div>
                                     <div class="col-sm-4">
 
@@ -99,7 +99,8 @@
                                         <label>Username</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="text" name="username" id="username" placeholder="Username">
+                                        <input class="form-control" type="text" name="username" id="username"
+                                               value="${account.getUserName()}" disabled>
                                     </div>
                                     <div class="col-sm-4">
                                         <p>
@@ -113,10 +114,11 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <label>Enter Password</label>
+                                        <label>Enter New Password</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="password" name="enter_password" id="enter_password"
+                                        <input class="form-control" type="password" name="enter_password"
+                                               id="enter_password"
                                                placeholder="Enter password..">
                                     </div>
                                     <div class="col-sm-4">
@@ -134,7 +136,8 @@
                                         <label>Confirm Password</label>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input class="form-control" type="password" name="confirm_password" id="confirm_password"
+                                        <input class="form-control" type="password" name="confirm_password"
+                                               id="confirm_password"
                                                placeholder="Confirm Password">
                                     </div>
                                     <div class="col-sm-4">
@@ -153,8 +156,8 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <select name="permission" id="permission">
-                                            <option value="Admin" selected>Admin</option>
-                                            <option value="Guest">Guest</option>
+                                            <option value="Admin" <c:if test='${account.getPermission()=="Admin"}'>selected="true"</c:if>>Admin</option>
+                                            <option value="Guest" <c:if test='${account.getPermission()=="Guest"}'>selected="true"</c:if>>Guest</option>
                                         </select>
                                         </select>
                                     </div>
@@ -167,8 +170,12 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <select name="status" id="status">
-                                            <option value="1" selected>Active</option>
-                                            <option value="0">Inactivity</option>
+                                            <option value="1" <c:if test='${account.isStatus()}'>selected="true"</c:if>>
+                                                Active
+                                            </option>
+                                            <option value="0" <c:if test='${!account.isStatus()}'>selected="true"</c:if>>
+                                                Inactivity
+                                            </option>
                                         </select>
                                     </div>
                                     <div class="col-sm-4"></div>
@@ -179,8 +186,11 @@
                                         <label></label>
                                     </div>
                                     <div class="col-sm-3">
-                                        <button type="submit" class="btn btn-outline-success">
-
+                                        <button type="submit" class="btn btn-outline-success"
+                                                <c:if test='${sucess != null}'>
+                                                    disabled
+                                                </c:if>
+                                        >
                                             <span>Create</span></button>
                                     </div>
                                     <div class="col-sm-3">
@@ -191,7 +201,6 @@
                                     <div class="col-sm-4"></div>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
@@ -232,13 +241,6 @@
 
 </body>
 <script src="/assest/js/input-image.js"></script>
-<script>
-    function displayImage() {
-        <c:forEach items='${"listStaffActive"}' var ="staff">
-        <c:if test='${staff.getId()== parseInt(document.getElementById("full_name").value)}'>
-        document.getElementById("output").src = "${staff.getImage()}"
-        </c:if>
-        </c:forEach>
-    }
-</script>
+
 </html>
+
