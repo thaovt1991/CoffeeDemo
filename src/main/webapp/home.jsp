@@ -27,7 +27,7 @@
     <!-- ============================================================== -->
 
     <div class="content-page" >
-        <img src="/assets/images/logo/logo-coffee-2.png" alt="" width="100%" height="756px">
+        <img src="/assets/images/logo/logo-coffee-2.png" alt="" width="100%" height="700px">
     </div>
     <!-- end container-fluid -->
 

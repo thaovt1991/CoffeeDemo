@@ -31,8 +31,7 @@
 <div id="wrapper" >
 <%--    <div class="col-3"></div>--%>
 <%--    <div class="col-6">--%>
-    <form action="/login" id="form-login" method="post">
-<%--       <img src="/assets/images/logo/logo-coffee-2.png" alt="" width="50%" height="50%" style="text-align: center">--%>
+    <form action="/login?action=home" id="form-login" method="post">
         <h1 class="form-heading"><img src="/assets/images/logo/logo-coffee-2.png" alt="" width="50%" height="50%"></h1>
         <div class="form-group">
             <i class="far fa-user"></i>

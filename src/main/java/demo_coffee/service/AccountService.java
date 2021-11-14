@@ -110,7 +110,7 @@ public class AccountService implements IAccountService {
     }
     @Override
     public Account findById(int id) {
-       String SELECT_ACCOUNT_BY_ID = " SELECT * ACCOUNT WHERE id= ?" ;
+       String SELECT_ACCOUNT_BY_ID = "SELECT * FROM accounts WHERE id = ?" ;
        Account account = null ;
         try {
             Connection connection = getConnection();
@@ -123,7 +123,7 @@ public class AccountService implements IAccountService {
                 String password = rs.getString("password");
                 String permission = rs.getString("permission");
                 boolean status = rs.getBoolean("status");
-                account= new Account(id, username, password, permission, status);
+                account = new Account(id, username, password, permission, status);
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -133,7 +133,7 @@ public class AccountService implements IAccountService {
 
     @Override
     public boolean update(Account account) throws SQLException {
-        String UPDATE_ACCOUNT_SQL = "UPDATE staffs SET password = ?, permission = ? , status = ? " ;
+        String UPDATE_ACCOUNT_SQL = "UPDATE accounts SET password = ?, permission = ? , status = ? WHERE id = ?" ;
         boolean rowUpdated = false;
         Connection connection = null;
         try {
@@ -143,6 +143,7 @@ public class AccountService implements IAccountService {
             preparedStatement.setString(1, account.getPassword());
             preparedStatement.setString(2, account.getPermission());
             preparedStatement.setBoolean(3, account.isStatus());
+            preparedStatement.setInt(4, account.getIdUser());
 
 
             rowUpdated = preparedStatement.executeUpdate() > 0;

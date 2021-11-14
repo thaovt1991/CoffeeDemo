@@ -158,7 +158,8 @@
                                             <c:if test='${staff.isStatusAccount()}'>
                                                 <button type="button" class="btn btn-outline-warning"
                                                         data-toggle="tooltip"
-                                                        data-placement="top" title="Edit Account" >
+                                                        data-placement="top" title="Edit Account"
+                                                        onclick="window.location.href ='${pageContext.request.contextPath}/accounts?action=edit&id=${staff.getId()}'">
                                                     <i class="fas fa-user-cog"></i>
                                                 </button>
                                             </c:if>

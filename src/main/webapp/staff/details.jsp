@@ -221,7 +221,7 @@
                                                 <c:if test='${!staff.isStatus()}' >
                                                     onclick='window.location.href="${pageContext.request.contextPath}/staffs?action=list_inactive"'
                                                 </c:if>>
-                                            <i class="fas fa-undo-alt"></i> Undo</button>
+                                            <i class="fas fa-undo-alt"></i>Undo</button>
                                     </div>
 
                                     <div class="col-sm-4"></div>

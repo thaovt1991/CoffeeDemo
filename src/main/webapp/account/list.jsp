@@ -147,8 +147,8 @@
                                     <td>
                                         <button type="button" class="btn btn-outline-info"
                                                 data-toggle="tooltip"
-                                                data-placement="top" title="Details">
-<%--                                                onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=details&id=${staff.getId()}'">--%>
+                                                data-placement="top" title="Details Staff"
+                                                onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=details&id=${staff.getId()}'">
                                             <i class="fas fa-search-plus"></i>
                                         </button>
                                     </td>

@@ -183,8 +183,8 @@
                                     </div>
                                     <div class="col-sm-3">
                                         <button type="submit" class="btn btn-outline-success"
-                                                <c:if test='${sucess != null}'>
-                                                    disabled
+                                                <c:if test='${sucsess != null}'>
+                                                    disabled ="true" ;
                                                 </c:if>
                                         >
                                             <span>Create</span></button>

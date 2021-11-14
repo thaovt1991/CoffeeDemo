@@ -100,7 +100,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <input class="form-control" type="text" name="username" id="username"
-                                               value="${account.getUserName()}" disabled>
+                                               value="${account.getUsername()}" disabled>
                                     </div>
                                     <div class="col-sm-4">
                                         <p>
@@ -114,12 +114,12 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <label>Enter New Password</label>
+                                        <label>Password</label>
                                     </div>
                                     <div class="col-sm-6">
                                         <input class="form-control" type="password" name="enter_password"
                                                id="enter_password"
-                                               placeholder="Enter password..">
+                                               placeholder="Enter password.." value="${account.getPassword()}">
                                     </div>
                                     <div class="col-sm-4">
                                         <p>
@@ -138,7 +138,7 @@
                                     <div class="col-sm-6">
                                         <input class="form-control" type="password" name="confirm_password"
                                                id="confirm_password"
-                                               placeholder="Confirm Password">
+                                               placeholder="Confirm Password" value="${account.getPassword()}">
                                     </div>
                                     <div class="col-sm-4">
                                         <p>
@@ -186,12 +186,12 @@
                                         <label></label>
                                     </div>
                                     <div class="col-sm-3">
-                                        <button type="submit" class="btn btn-outline-success"
+                                        <button type="submit" class="btn btn-outline-warning"
                                                 <c:if test='${sucess != null}'>
                                                     disabled
                                                 </c:if>
                                         >
-                                            <span>Create</span></button>
+                                            <span>Apply</span></button>
                                     </div>
                                     <div class="col-sm-3">
                                         <button type="button" class="btn btn-outline-dark"

@@ -22,45 +22,58 @@ public class StaffServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("staffOfAccount",LoginServlet.staffOfAccount);
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-        switch (action) {
-            case "create":
-                showCreateForm(request, response);
-                break;
-            case "edit":
-                showEditForm(request, response);
-                break;
-            case "delete":
-                showDeleteForm(request, response);
-                break;
-            case "restore":
-                showRestoreForm(request, response);
-                break;
-            case "details":
-                showStaffInformation(request, response);
-                break;
-            case "search":
-                showSearch(request, response);
-                break;
-            case "list_inactive":
-                listStaffsInactive(request, response);
-                break;
-            case "search_inactive":
-                showSearchInactive(request, response);
-                break;
-            case "remove":
-                showRemove(request, response);
-                break;
-            case "create_account":
-                showCreateAccount(request, response);
-                break;
-            default:
-                listStaffs(request, response);
-                break;
+        if (LoginServlet.accountLogin == null || LoginServlet.staffOfAccount == null) {
+            request.setAttribute("messageLoginError", "Login error !");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            request.setAttribute("staffOfAccount", LoginServlet.staffOfAccount);
+            request.setAttribute("accountLogin", LoginServlet.accountLogin);
+            String action = request.getParameter("action");
+            if (action == null) {
+                action = "";
+            }
+            switch (action) {
+                case "create":
+                    showCreateForm(request, response);
+                    break;
+                case "edit":
+                    showEditForm(request, response);
+                    break;
+                case "delete":
+                    showDeleteForm(request, response);
+                    break;
+                case "restore":
+                    showRestoreForm(request, response);
+                    break;
+                case "details":
+                    showStaffInformation(request, response);
+                    break;
+                case "search":
+                    showSearch(request, response);
+                    break;
+                case "list_inactive":
+                    listStaffsInactive(request, response);
+                    break;
+                case "search_inactive":
+                    showSearchInactive(request, response);
+                    break;
+                case "remove":
+                    showRemove(request, response);
+                    break;
+                case "create_account":
+                    showCreateAccount(request, response);
+                    break;
+                default:
+                    listStaffs(request, response);
+                    break;
+            }
         }
     }
 
@@ -246,7 +259,8 @@ public class StaffServlet extends HttpServlet {
 
         RequestDispatcher dispatcher;
         if (staff == null) {
-            dispatcher = request.getRequestDispatcher("error-404.jsp");
+            request.setAttribute("message", "Not staff exist");
+            dispatcher = request.getRequestDispatcher("error.jsp");
         } else {
             request.setAttribute("staff", staff);
             dispatcher = request.getRequestDispatcher("staff/edit.jsp");
@@ -366,9 +380,16 @@ public class StaffServlet extends HttpServlet {
     private void showStaffInformation(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Staff staff = staffService.findById(id);
-        request.setAttribute("staff", staff);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("staff/details.jsp");
+
+        RequestDispatcher dispatcher;
+        if (staff == null) {
+            request.setAttribute("message", "Not staff exist");
+            dispatcher = request.getRequestDispatcher("error.jsp");
+        } else {
+            request.setAttribute("staff", staff);
+            dispatcher = request.getRequestDispatcher("staff/details.jsp");
+        }
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -381,8 +402,14 @@ public class StaffServlet extends HttpServlet {
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Staff staff = staffService.findById(id);
-        request.setAttribute("staff", staff);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("staff/delete.jsp");
+        RequestDispatcher dispatcher;
+        if (staff == null) {
+            request.setAttribute("message", "Not staff exist");
+            dispatcher = request.getRequestDispatcher("error.jsp");
+        } else {
+            request.setAttribute("staff", staff);
+            dispatcher = request.getRequestDispatcher("staff/delete.jsp");
+        }
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -405,8 +432,14 @@ public class StaffServlet extends HttpServlet {
     private void showRestoreForm(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Staff staff = staffService.findById(id);
-        request.setAttribute("staff", staff);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("staff/restore.jsp");
+        RequestDispatcher dispatcher;
+        if (staff == null) {
+            request.setAttribute("message", "Not staff exist");
+            dispatcher = request.getRequestDispatcher("error.jsp");
+        } else {
+            request.setAttribute("staff", staff);
+            dispatcher = request.getRequestDispatcher("staff/restore.jsp");
+        }
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -499,8 +532,15 @@ public class StaffServlet extends HttpServlet {
     private void showRemove(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         Staff staff = staffService.findById(id);
-        request.setAttribute("staff", staff);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("staff/remove.jsp");
+
+        RequestDispatcher dispatcher;
+        if (staff == null) {
+            request.setAttribute("message", "Not staff exist");
+            dispatcher = request.getRequestDispatcher("error.jsp");
+        } else {
+            request.setAttribute("staff", staff);
+            dispatcher = request.getRequestDispatcher("staff/remove.jsp");
+        }
         try {
             dispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -573,12 +613,11 @@ public class StaffServlet extends HttpServlet {
             request.setAttribute("errorPass2", "Password cannot be left blank");
         } else if (!Regex.isPasswordHardValidator(pass2)) {
             request.setAttribute("errorPass2", "Minimum 8 characters, at least one letter, one number and one special character");
-        } else if(!pass1.equals(pass2)){
+        } else if (!pass1.equals(pass2)) {
             request.setAttribute("errorPass2", "Passwords are not the same");
-        }
-        else isPass2 = true;
+        } else isPass2 = true;
 
-        checkAll = isUsername && isPass1 && isPass2 ;
+        checkAll = isUsername && isPass1 && isPass2;
 
         if (checkAll) {
             Account account = new Account(idUser, username, pass1, permission, status);
@@ -586,10 +625,10 @@ public class StaffServlet extends HttpServlet {
             if (isInsert) {
                 request.setAttribute("sucsess", " ***** Create account success ***** ");
                 staffService.updateStatusAccount(idUser);
-                request.setAttribute("success","create account susccess");
+                request.setAttribute("success", "create account susccess");
             } else
                 request.setAttribute("error", " **** Create account fail ****");
-        }else{
+        } else {
             request.setAttribute("error", " **** Create account fail ****");
         }
 

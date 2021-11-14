@@ -102,7 +102,7 @@
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                 <!-- item-->
                 <div class="dropdown-header noti-title">
-                    <h6 class="text-overflow m-0">Welcome !</h6>
+                    <h6 class="text-overflow m-0">Welcome <span>${accountLogin.getPermission()}</span>!</h6>
                 </div>
 
                 <!-- item-->
@@ -118,15 +118,15 @@
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="${pageContext.request.contextPath}/login?action=change_password" class="dropdown-item notify-item">
                     <i class="mdi mdi-lock-outline"></i>
-                    <span>Lock Screen</span>
+                    <span>Change Password</span>
                 </a>
 
                 <div class="dropdown-divider"></div>
 
                 <!-- item-->
-                <a href="http://localhost:8080/" class="dropdown-item notify-item" >
+                <a href="${pageContext.request.contextPath}/login?action=login" class="dropdown-item notify-item" >
                     <i class="mdi mdi-logout-variant"></i>
                     <span>Logout</span>
                 </a>
