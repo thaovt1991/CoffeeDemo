@@ -23,15 +23,17 @@
         body{
             background-image: url(/assets/images/background/ca-phe.jpg);
         }
+        #login:hover{
+            cursor: pointer;
+        }
     </style>
     <link rel="shortcut icon" href="/assets/images/logo/logo-coffee-2.png">
 </head>
 <body>
 
 <div id="wrapper" >
-<%--    <div class="col-3"></div>--%>
-<%--    <div class="col-6">--%>
-    <form action="/login?action=home" id="form-login" method="post">
+
+    <form action="${pageContext.request.contextPath}/login?action=home" id="form-login" method="post">
         <h1 class="form-heading"><img src="/assets/images/logo/logo-coffee-2.png" alt="" width="50%" height="50%"></h1>
         <div class="form-group">
             <i class="far fa-user"></i>
@@ -44,10 +46,10 @@
                 <i class="far fa-eye"></i>
             </div>
         </div>
-        <input type="submit" value="Login" class="form-submit">
+        <input type="submit" value="Login" class="form-submit" id="login">
     </form>
     </div>
-    <div class="col-3">
+    <div >
         <p>
             <c:if test="${message!= null}">
                 ${message}

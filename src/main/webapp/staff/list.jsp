@@ -88,6 +88,7 @@
                                                         <option value="Name">Name</option>
                                                         <option value="Gender">Gender</option>
                                                         <option value="Position">Position</option>
+                                                        <option value="All">All</option>
                                                     </select>
                                                 </div>
                                                 <input type="text" class="form-control" name="search" id="search"

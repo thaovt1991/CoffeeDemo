@@ -85,7 +85,6 @@
                                                 <div class="form-control">
                                                 <label for="properties" style="font-size: 16px">Properties</label>
                                                 <select name="properties" id="properties" style="width: 120px">
-                                                    <option value="Name">Name</option>
                                                     <option value="Username">Username</option>
                                                     <option value="Permission">Permission</option>
                                                 </select>
@@ -126,16 +125,13 @@
                                 <c:forEach items='${requestScope["staffListHaveAccount"]}' var = "staff">
                                     <c:if test='${account.getIdUser() == staff.getId()}'>
                                 <tr>
-                                    <td>${account.getIdUser()}</td>
+                                    <td name ="id_user" id ="id_user" >${account.getIdUser()}</td>
                                     <td><img src="${staff.getImage()}" alt="image_staff"
                                              style="width: 50px;height:50px"></td>
                                     <td>${staff.getFullName()}</td>
                                     <td>${account.getUsername()}</td>
                                     <td>${account.getPermission()}</td>
-                                        <%-- <td>--%>
-                                        <%--<fmt:formatNumber type="number" maxFractionDigits="3"--%>
-                                        <%-- value="${staff.getPay()}"></fmt:formatNumber>--%>
-                                        <%--</td>--%>
+
                                     <td>
                                         <button type="button" class="btn btn-outline-secondary"
                                                 data-toggle="tooltip" data-placement="top" title="Edit"
@@ -145,11 +141,10 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-info"
+                                        <button type="button" class="btn btn-outline-warning"
                                                 data-toggle="tooltip"
-                                                data-placement="top" title="Details Staff"
-                                                onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=details&id=${staff.getId()}'">
-                                            <i class="fas fa-search-plus"></i>
+                                                data-placement="top" title="Lock Account">
+                                            <i class="mdi mdi-lock-outline"></i>
                                         </button>
                                     </td>
 
@@ -157,7 +152,6 @@
                                         <button type="button" class="btn btn-outline-danger"
                                                 data-toggle="tooltip"
                                                 data-placement="top" title="Delete">
-<%--                                                onclick="window.location.href ='${pageContext.request.contextPath}/staffs?action=delete&id=${staff.getId()}'">--%>
                                             <i class="fas fa-ban"></i>
                                         </button>
                                     </td>

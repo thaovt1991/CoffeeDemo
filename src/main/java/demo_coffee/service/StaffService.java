@@ -83,7 +83,7 @@ public class StaffService implements IStaffService {
                 long pay = rs.getLong("pay");
                 boolean status_staff = rs.getBoolean("status_staff");
                 String description_staff = rs.getString("description_staff");
-                staffs.add(new Staff(id, full_name, gender, date_of_birth, id_card, email, phone, address, image, position, pay, status_staff, description_staff,isAccount));
+                staffs.add(new Staff(id, full_name, gender, date_of_birth, id_card, email, phone, address, image, position, pay, status_staff, description_staff, isAccount));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -260,30 +260,23 @@ public class StaffService implements IStaffService {
 
     @Override
     public List<Staff> search(String properties, String search) {
-        List<Staff> staffs = findAllActive();
         List<Staff> staffsSearch = new ArrayList<>();
         switch (properties) {
+            case "Name":
+                String searchByNameSql = "SELECT * FROM staffs WHERE full_name LIKE ? AND status_staff = 1";
+                staffsSearch = listSearch(searchByNameSql, search, 1);
+                break;
             case "Gender":
-                for (Staff staff : staffs) {
-                    if (staff.getGender().contains(search)) {
-                        staffsSearch.add(staff);
-                    }
-                }
+                String searchByGenderSql = "SELECT * FROM staffs WHERE gender LIKE ? AND status_staff = 1";
+                staffsSearch = listSearch(searchByGenderSql, search, 1);
                 break;
             case "Position":
-                for (Staff staff : staffs) {
-                    if (staff.getPosition().contains(search)) {
-                        staffsSearch.add(staff);
-                    }
-                }
+                String searchByPositionSql = "SELECT * FROM staffs WHERE position_staff LIKE ? AND status_staff = 1";
+                staffsSearch = listSearch(searchByPositionSql, search, 1);
                 break;
             default:
-                for (Staff staff : staffs) {
-                    if (staff.getFullName().contains(search)) {
-                        staffsSearch.add(staff);
-                    }
-                }
-
+                String searchByAllSql = "SELECT * FROM staffs WHERE (full_name LIKE ? OR gender LIKE ? OR position_staff LIKE ?) AND status_staff = 1";
+                staffsSearch = listSearch(searchByAllSql, search, 3);
                 break;
         }
 
@@ -292,29 +285,23 @@ public class StaffService implements IStaffService {
 
     @Override
     public List<Staff> searchStaffInactive(String properties, String search) {
-        List<Staff> staffs = findAllInactive();
         List<Staff> staffsSearch = new ArrayList<>();
         switch (properties) {
+            case "Name":
+                String searchByNameSql = "SELECT * FROM staffs WHERE full_name LIKE ? AND status_staff = 0";
+                staffsSearch = listSearch(searchByNameSql, search, 1);
+                break;
             case "Gender":
-                for (Staff staff : staffs) {
-                    if (staff.getGender().contains(search)) {
-                        staffsSearch.add(staff);
-                    }
-                }
+                String searchByGenderSql = "SELECT * FROM staffs WHERE gender LIKE ? AND status_staff = 0";
+                staffsSearch = listSearch(searchByGenderSql, search, 1);
                 break;
             case "Position":
-                for (Staff staff : staffs) {
-                    if (staff.getPosition().contains(search)) {
-                        staffsSearch.add(staff);
-                    }
-                }
+                String searchByPositionSql = "SELECT * FROM staffs WHERE position_staff LIKE ? AND status_staff = 0";
+                staffsSearch = listSearch(searchByPositionSql, search, 1);
                 break;
             default:
-                for (Staff staff : staffs) {
-                    if (staff.getFullName().contains(search)) {
-                        staffsSearch.add(staff);
-                    }
-                }
+                String searchByAllSql = "SELECT * FROM staffs WHERE (full_name LIKE ? OR gender LIKE ? OR position_staff LIKE ?) AND status_staff = 0";
+                staffsSearch = listSearch(searchByAllSql, search, 3);
                 break;
         }
         return staffsSearch;
@@ -324,7 +311,7 @@ public class StaffService implements IStaffService {
     public boolean removeData(int id) throws SQLException {
         String DELETE_STAFF_SQL = "DELETE FROM staffs WHERE id = ?";
         Connection connection = null;
-        boolean isRemoveData = false ;
+        boolean isRemoveData = false;
         try {
             connection = getConnection();
             connection.setAutoCommit(false);
@@ -332,23 +319,23 @@ public class StaffService implements IStaffService {
             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_STAFF_SQL);
             preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
-            isRemoveData = preparedStatement.executeUpdate() >0;
+            isRemoveData = preparedStatement.executeUpdate() > 0;
 
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
             connection.rollback();
-        }finally {
+        } finally {
             connection.setAutoCommit(true);
             connection.close();
         }
-        return isRemoveData ;
+        return isRemoveData;
     }
 
     @Override
     public List<Staff> listStaffNotHaveAccount() {
-//       String SELECT_STAFF_NOT_HAVE_ACCOUNT = "SELECT * FROM staffs WHERE id NOT IN (SELECT id FROM accounts) AND status_staff = 1" ;
-        String SELECT_STAFF_NOT_HAVE_ACCOUNT = "SELECT * FROM staffs WHERE  staff_account = 1" ;
+       String SELECT_STAFF_NOT_HAVE_ACCOUNT = "SELECT * FROM staffs WHERE id NOT IN (SELECT id FROM accounts) AND status_staff = 1" ;
+//        String SELECT_STAFF_NOT_HAVE_ACCOUNT = "SELECT * FROM staffs WHERE  status_account = 1 AND status_staff = 1";
         List<Staff> staffs = new ArrayList<>();
         try {
             Connection connection = getConnection();
@@ -394,6 +381,46 @@ public class StaffService implements IStaffService {
     }
 
 
+
+    public List<Staff> listSearch(String sql, String keySearch, int numElementSearch) {
+        List<Staff> staffs = new ArrayList<>();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            keySearch = "%" + keySearch + "%";
+            if (numElementSearch == 1) {
+                preparedStatement.setString(1, keySearch);
+            } else {
+                preparedStatement.setString(1, keySearch);
+                preparedStatement.setString(2, keySearch);
+                preparedStatement.setString(3, keySearch);
+            }
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String full_name = rs.getString("full_name");
+                String gender = rs.getString("gender");
+                String date_of_birth = rs.getString("date_of_birth");
+                String id_card = rs.getString("id_card");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                String address = rs.getString("address");
+                String image = rs.getString("image");
+                String position = rs.getString("position_staff");
+                Boolean isAccount = rs.getBoolean("status_account");
+                long pay = rs.getLong("pay");
+                boolean status_staff = rs.getBoolean("status_staff");
+                String description_staff = rs.getString("description_staff");
+                staffs.add(new Staff(id, full_name, gender, date_of_birth, id_card, email, phone, address, image, position, pay, status_staff, description_staff, isAccount));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return staffs;
+    }
+
+
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {
@@ -409,4 +436,7 @@ public class StaffService implements IStaffService {
             }
         }
     }
+
 }
+
+

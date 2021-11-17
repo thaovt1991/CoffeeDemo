@@ -54,7 +54,10 @@ public class AccountServlet extends HttpServlet {
 
                     break;
                 case "search":
-
+               showSearch(request,response);
+                    break;
+                case "delete":
+//                    listAccountActive(request, response);
                     break;
                 case "list_inactive":
 
@@ -74,55 +77,69 @@ public class AccountServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-        switch (action) {
-            case "create":
-                try {
-                    saveAccount(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "edit":
-                try {
-                    updateAccount(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "create_account":
-                break;
-            case "delete":
+        if (LoginServlet.accountLogin == null || LoginServlet.staffOfAccount == null) {
+            request.setAttribute("messageLoginError", "Login error !");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            request.setAttribute("staffOfAccount", LoginServlet.staffOfAccount);
+            request.setAttribute("accountLogin", LoginServlet.accountLogin);
+            String action = request.getParameter("action");
+            if (action == null) {
+                action = "";
+            }
+            switch (action) {
+                case "create":
+                    try {
+                        saveAccount(request, response);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "edit":
+                    try {
+                        updateAccount(request, response);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "create_account":
+                    break;
+                case "delete":
 
-                break;
-            case "search":
+                    break;
+                case "search":
+                    searchBy(request,response);
+                    break;
+                case "restore":
 
-                break;
-            case "restore":
+                    break;
+                case "search_inactive":
 
-                break;
-            case "search_inactive":
+                    break;
+                case "remove":
 
-                break;
-            case "remove":
-
-                break;
-            default:
-                break;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
     private void listAccountActive(HttpServletRequest request, HttpServletResponse response) {
-        List<Account> listAccountActive = accountService.findAllActive();
-        request.setAttribute("listAcount", listAccountActive);
+        List<Account> listAccount= accountService.findAllActive();
+        request.setAttribute("listAcount", listAccount);
 
 
         List<Staff> staffList = staffService.findAll();
         List<Staff> staffListHaveAccount = new ArrayList<>();
-        for (Account account : listAccountActive) {
+        for (Account account : listAccount) {
             for (Staff staff : staffList) {
                 if (account.getIdUser() == staff.getId()) {
                     staffListHaveAccount.add(staff);
@@ -280,4 +297,57 @@ public class AccountServlet extends HttpServlet {
         }
         showEditAccount(request, response);
     }
+
+    private void showSearch(HttpServletRequest request, HttpServletResponse response){
+        String properties = request.getParameter("properties");
+        request.setAttribute("properties",properties);
+        String keySearch = request.getParameter("search");
+        request.setAttribute("search",keySearch);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("account/search.jsp") ;
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void searchBy(HttpServletRequest request, HttpServletResponse response){
+         String properties = request.getParameter("properties");
+         request.setAttribute("properties",properties);
+         String keySearch = request.getParameter("search");
+         request.setAttribute("search",keySearch);
+
+         List<Account> listAccountSearch = accountService.search(properties,keySearch) ;
+          request.setAttribute("listAccountSearch",listAccountSearch);
+        List<Staff> staffList = staffService.findAll();
+        List<Staff> staffListHaveAccount = new ArrayList<>();
+        for (Account account : listAccountSearch) {
+            for (Staff staff : staffList) {
+                if (account.getIdUser() == staff.getId()) {
+                    staffListHaveAccount.add(staff);
+                }
+            }
+        }
+
+        request.setAttribute("staffListHaveAccount", staffListHaveAccount);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("account/search.jsp") ;
+        try {
+            dispatcher.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+//    private void lockAccount(HttpServletRequest request, HttpServletResponse){
+//        int id = Integer.parseInt(request.getParameter("id_user") );
+//        Account account = accountService.findById(id);
+//        ac
+//    }
+
+
 }

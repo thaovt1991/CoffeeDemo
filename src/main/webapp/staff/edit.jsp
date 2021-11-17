@@ -232,7 +232,14 @@
                                         <input class="form-control" type="number" name="pay" id="pay"
                                                value="${requestScope["staff"].getPay()}">
                                     </div>
-                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <p>
+                                            <c:if test='${requestScope["messagePay"] != null}'>
+                                                <span style="color: red"
+                                                      class="message">${requestScope["messagePay"]}</span>
+                                            </c:if>
+                                        </p>
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">

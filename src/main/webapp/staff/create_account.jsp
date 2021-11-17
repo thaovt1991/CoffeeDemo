@@ -156,7 +156,8 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <select name="permission" id="permission">
-                                            <option value="Admin" selected>Admin</option>
+                                            <option value="Staff Order">Staff Order</option>
+                                            <option value="Admin" >Admin</option>
                                             <option value="Guest">Guest</option>
                                         </select>
                                         </select>
@@ -184,7 +185,7 @@
                                     <div class="col-sm-3">
                                         <button type="submit" class="btn btn-outline-success"
                                                 <c:if test='${sucsess != null}'>
-                                                    disabled ="true" ;
+                                                    disabled ="true";
                                                 </c:if>
                                         >
                                             <span>Create</span></button>

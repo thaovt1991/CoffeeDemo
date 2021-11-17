@@ -49,7 +49,7 @@
                     <div class="card-box">
                         <div class="row">
                             <div class="col-sm-3">
-                                <h5 class="mt-0 font-14 mb-3">Create New Account</h5>
+                                <h5 class="mt-0 font-14 mb-3">Edit Account</h5>
                             </div>
                             <div class="col-sm-6">
                                 <p>
@@ -158,6 +158,7 @@
                                         <select name="permission" id="permission">
                                             <option value="Admin" <c:if test='${account.getPermission()=="Admin"}'>selected="true"</c:if>>Admin</option>
                                             <option value="Guest" <c:if test='${account.getPermission()=="Guest"}'>selected="true"</c:if>>Guest</option>
+                                            <option value="Guest" <c:if test='${account.getPermission()=="Staff Order"}'>selected="true"</c:if>>Staff Order</option>
                                         </select>
                                         </select>
                                     </div>

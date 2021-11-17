@@ -5,22 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fbb3e25a-c2d8-4f40-8218-a28cffd5744b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/model/Drinks.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/service/DrinksService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/service/IDrinksService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/change_password.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/error.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/CoffeeDemo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries-with-intellij-classes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/account/search.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/AccountServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/AccountServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/LoginServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/LoginServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/StaffServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/controller/StaffServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/AccountService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/IAccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/IAccountService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/StaffService.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/service/StaffService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/units/Regex.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/demo_coffee/units/Regex.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/libs/CoffeeDemo-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/CoffeeDemo-1.0-SNAPSHOT.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/tmp/war/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/war/MANIFEST.MF" afterDir="false" />
@@ -30,6 +32,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/controller/StaffServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/controller/StaffServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/service/AccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/service/IAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/service/IAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/service/StaffService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/service/StaffService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo_coffee/units/Regex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/demo_coffee/units/Regex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/account/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account/create.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/account/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account/edit.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/account/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account/list.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/css/app.css" afterDir="false" />
@@ -103,7 +108,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/libs/select2/select2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/libs/select2/select2.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/libs/select2/select2.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/libs/select2/select2.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/libs/summernote/summernote-bs4.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/libs/summernote/summernote-bs4.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/home.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/footer.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/head.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/head.jsp" afterDir="false" />
@@ -111,8 +115,9 @@
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/navbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/right-bar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/right-bar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/layout/script.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/layout/script.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/create.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/create_account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/create_account.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/details.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/details.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/edit.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/list.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/staff/search.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/staff/search.jsp" afterDir="false" />
     </list>
@@ -129,12 +134,26 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="CoffeeDemo" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CoffeeDemo" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="CoffeeDemo" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -146,9 +165,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -156,10 +175,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/demo_coffee/controller/StaffServlet.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/demo_coffee/controller/AccountServlet.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/demo_coffee/service/DrinksService.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/webapp/change_password.jsp" root0="SKIP_INSPECTION" root1="FORCE_HIGHLIGHTING" root2="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/demo_coffee/controller/StaffServlet.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/demo_coffee/service/DrinksService.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -182,14 +201,36 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Module3/JSPandJSTL/user-manager" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Module3/ManagerProducts" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/webapp/assets/images/background" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Coffee-Demo">
+    <configuration name="CoffeeDemo [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="Coffee-Demo" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.54" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
@@ -277,6 +318,11 @@
         </option>
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.CoffeeDemo [build]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -294,6 +340,18 @@
       <workItem from="1636733613418" duration="6090000" />
       <workItem from="1636781547162" duration="15030000" />
       <workItem from="1636863884329" duration="20753000" />
+      <workItem from="1636897755945" duration="1077000" />
+      <workItem from="1636900960087" duration="1873000" />
+      <workItem from="1636905871616" duration="12000" />
+      <workItem from="1636939606196" duration="527000" />
+      <workItem from="1636946569540" duration="8067000" />
+      <workItem from="1636958581417" duration="10726000" />
+      <workItem from="1636992399877" duration="5754000" />
+      <workItem from="1637026210628" duration="1931000" />
+      <workItem from="1637030421768" duration="4028000" />
+      <workItem from="1637044104662" duration="6746000" />
+      <workItem from="1637056105230" duration="595000" />
+      <workItem from="1637138513920" duration="531000" />
     </task>
     <servers />
   </component>

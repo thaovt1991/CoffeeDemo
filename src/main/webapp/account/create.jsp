@@ -153,7 +153,8 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <select name="permission" id="permission">
-                                            <option value="Admin" selected>Admin</option>
+                                            <option value="Staff Order">Staff Order</option>
+                                            <option value="Admin" >Admin</option>
                                             <option value="Guest">Guest</option>
                                         </select>
                                         </select>

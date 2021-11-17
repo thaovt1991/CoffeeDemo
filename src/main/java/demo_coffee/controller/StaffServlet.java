@@ -22,6 +22,7 @@ public class StaffServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         if (LoginServlet.accountLogin == null || LoginServlet.staffOfAccount == null) {
             request.setAttribute("messageLoginError", "Login error !");
             RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
@@ -79,53 +80,69 @@ public class StaffServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-        switch (action) {
-            case "create":
-                try {
-                    createStaff(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "edit":
-                try {
-                    updateStaff(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "delete":
-                deleteStaff(request, response);
-                break;
-            case "search":
-                search(request, response);
-                break;
-            case "restore":
-                restoreStaff(request, response);
-                break;
-            case "search_inactive":
-                searchInactive(request, response);
-                break;
-            case "remove":
-                try {
-                    remove(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-            case "create_account":
-                try {
-                    createAccount(request, response);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-            default:
-                break;
+        if (LoginServlet.accountLogin == null || LoginServlet.staffOfAccount == null) {
+            request.setAttribute("messageLoginError", "Login error !");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+            try {
+                dispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            request.setAttribute("staffOfAccount", LoginServlet.staffOfAccount);
+            request.setAttribute("accountLogin", LoginServlet.accountLogin);
+
+
+            String action = request.getParameter("action");
+            if (action == null) {
+                action = "";
+            }
+            switch (action) {
+                case "create":
+                    try {
+                        createStaff(request, response);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "edit":
+                    try {
+                        updateStaff(request, response);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "delete":
+                    deleteStaff(request, response);
+                    break;
+                case "search":
+                    search(request, response);
+                    break;
+                case "restore":
+                    restoreStaff(request, response);
+                    break;
+                case "search_inactive":
+                    searchInactive(request, response);
+                    break;
+                case "remove":
+                    try {
+                        remove(request, response);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "create_account":
+                    try {
+                        createAccount(request, response);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -227,8 +244,13 @@ public class StaffServlet extends HttpServlet {
             } else isPhoneNumber = true;
         } else isPhoneNumber = true;
 
+        boolean isPay = false;
+        if (!Regex.isPayValidator(stPay)) {
+            request.setAttribute("messagePay", "* Not format pay ");
+        } else isPay = true;
 
-        isTrueAll = isName && isDay && isIdCard && isEmail && isPhoneNumber;
+
+        isTrueAll = isName && isDay && isIdCard && isEmail && isPhoneNumber && isPay;
 
         if (isTrueAll) {
             Staff staff = new Staff(full_name, gender, date_of_birth, id_card, email, phone, address, image, position, pay, status, description);
@@ -288,7 +310,11 @@ public class StaffServlet extends HttpServlet {
         String address = request.getParameter("address");
         String image = request.getParameter("image");
         String position = request.getParameter("position");
-        Long pay = Long.parseLong(request.getParameter("pay"));
+        String stPay = request.getParameter("pay");
+        if (stPay.equals("")) {
+            stPay = "0";
+        }
+        Long pay = Long.parseLong(stPay);
         Boolean status = true;
         int value = Integer.parseInt(request.getParameter("status"));
         if (value != 1) {
@@ -340,8 +366,13 @@ public class StaffServlet extends HttpServlet {
                 } else isPhoneNumber = true;
             } else isPhoneNumber = true;
 
+            boolean isPay = false;
+            if (!Regex.isPayValidator(stPay)) {
+                request.setAttribute("messagePay", "* Not format pay ");
+            } else isPay = true;
 
-            isTrueAll = isName && isDay && isIdCard && isEmail && isPhoneNumber;
+
+            isTrueAll = isName && isDay && isIdCard && isEmail && isPhoneNumber && isPay;
 
             if (isTrueAll) {
                 staff.setFullName(full_name);
@@ -465,6 +496,8 @@ public class StaffServlet extends HttpServlet {
         String properties = request.getParameter("properties");
         request.setAttribute("search", search);
         request.setAttribute("propertiesSelect", properties);
+        request.setAttribute("staffOfAccount", LoginServlet.staffOfAccount);
+        request.setAttribute("accountLogin", LoginServlet.accountLogin);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("staff/search.jsp");
         try {
@@ -481,11 +514,11 @@ public class StaffServlet extends HttpServlet {
     private void search(HttpServletRequest request, HttpServletResponse response) {
         String search = request.getParameter("search");
         String properties = request.getParameter("properties");
-
         List<Staff> listSearch = staffService.search(properties, search);
         request.setAttribute("listSearch", listSearch);
         request.setAttribute("search", search);
         request.setAttribute("propertiesSelect", properties);
+
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("staff/search.jsp");
         try {
@@ -616,6 +649,7 @@ public class StaffServlet extends HttpServlet {
         } else if (!pass1.equals(pass2)) {
             request.setAttribute("errorPass2", "Passwords are not the same");
         } else isPass2 = true;
+
 
         checkAll = isUsername && isPass1 && isPass2;
 

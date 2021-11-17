@@ -38,4 +38,8 @@ public class Regex {
         String PASSWORD_REGEX = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{6,}$"; // Tối thiểu 8 ký tự, ít nhất một chữ cái, một số và một ký tự đặc biệt:
         return Pattern.compile(PASSWORD_REGEX).matcher(password).matches();
     }
+    public static  boolean isPayValidator(String pay){
+        String PAY_REGEX = "^[1-9][0-9]{1,14}[0]{3}$";
+        return Pattern.compile(PAY_REGEX).matcher(pay).matches();
+    }
 }

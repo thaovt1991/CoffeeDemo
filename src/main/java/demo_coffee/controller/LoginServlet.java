@@ -53,12 +53,14 @@ public class LoginServlet extends HttpServlet {
                     break;
                 default:
                     showLogin(request, response);
+                    break;
             }
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String action = request.getParameter("action");
         if (action == null) {
             action = "";
@@ -74,8 +76,8 @@ public class LoginServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
-
             default:
+                break;
 
 
         }
@@ -184,7 +186,8 @@ public class LoginServlet extends HttpServlet {
         String passOld =request.getParameter("old_password");
         String pass1 = request.getParameter("enter_password");
         String pass2 = request.getParameter("confirm_password");
-
+        request.setAttribute("staffOfAccount", staffOfAccount);
+        request.setAttribute("accountLogin", accountLogin);
         Account account = accountLogin ;
 
         boolean isOldPass = false ;

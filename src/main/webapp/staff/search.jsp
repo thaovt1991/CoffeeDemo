@@ -88,6 +88,7 @@
                                                         <option value="Name"  <c:if test='${requestScope["propertiesSelect"]=="Name"}'>selected="true"</c:if> >Name</option>
                                                         <option value="Gender"  <c:if test='${requestScope["propertiesSelect"]=="Gender"}'>selected="true"</c:if>>Gender</option>
                                                         <option value="Position"  <c:if test='${requestScope["propertiesSelect"]=="Position"}'>selected="true"</c:if>>Position</option>
+                                                        <option value="All"  <c:if test='${requestScope["propertiesSelect"]=="All"}'>selected="true"</c:if>>All</option>
                                                     </select>
                                                 </div>
                                                 <input type="text" class="form-control" name="search" id="search"

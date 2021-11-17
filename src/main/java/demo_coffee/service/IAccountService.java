@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface IAccountService {
 
+    List<Account> findAll() ;
+
     List<Account> findAllActive() ;
 
     List<Account> findAllInactive() ;
-
-
 
     boolean save(Account account) throws SQLException;
 
@@ -24,7 +24,7 @@ public interface IAccountService {
 
     void delete(int id) ; //delete mem ;
 
-    List<Account> search(String username);
+    List<Account> search(String properties, String keySearch);
 
     List<Account> searchInactive(String username);
 
